@@ -29,6 +29,13 @@ namespace MeetUp.Admin
             EmailText.Text = user.Email;
             FullNameText.Text = user.FullName;
             DescriptionText.Text = user.Description;
+
+            if (user.Birthday != null)
+            {
+                DateTime brth = (DateTime)user.Birthday;
+                Birthday.Text = brth.ToString("dd/MM/yyyy");
+            }
+            
             ActiveCheckbox.IsChecked = Convert.ToBoolean(user.Active);
 
             // Show and hide ban/unban button
@@ -47,7 +54,7 @@ namespace MeetUp.Admin
         {
             var userServiceModel = new UserServiceModel();
             // Todo add image
-            userService.UpdateUser(this.UserId, FullNameText.Text, DescriptionText.Text, null, null, PasswordText.Text, Convert.ToInt32(ActiveCheckbox.IsChecked), null, null);
+            userService.UpdateUser(this.UserId, FullNameText.Text, DescriptionText.Text, null, DateTime.Parse(Birthday.Text), PasswordText.Text, Convert.ToInt32(ActiveCheckbox.IsChecked), null, null);
             this.NavigationService.Navigate(new ListUsersPage());
         }
 
