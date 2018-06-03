@@ -68,6 +68,29 @@ namespace MeetUp.Admin
             this.NavigationService.Navigate(editUserPage);
         }
 
+        private void BanUser(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            User user = b.CommandParameter as User;
+            
+            if (b != null)
+            {
+                this.users.BanUser(user.Id);
+            }
+        }
+
+        private void UnbanUser(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            User user = b.CommandParameter as User;
+
+            if (b != null)
+            {
+                this.users.UnbanUser(user.Id);
+            }
+        }
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var createUserPage = new CreateUserPage();
@@ -76,11 +99,5 @@ namespace MeetUp.Admin
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var bannedUsersPage = new BannedUsersPage();
-
-            this.NavigationService.Navigate(bannedUsersPage);
-        }
     }
 }
