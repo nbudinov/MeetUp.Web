@@ -24,7 +24,7 @@ namespace MeetUp.Admin
 
             this.users = new UserService();
 
-            allUsers = this.users.getUsers();
+            allUsers = this.users.All();
             this.DataContext = this; //data binding 
 
             foreach (User u in allUsers)
