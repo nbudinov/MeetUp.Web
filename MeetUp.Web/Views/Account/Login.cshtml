@@ -1,0 +1,29 @@
+﻿@model MeetUp.Web.Models.LoginViewModel
+
+@*@{
+    Layout = null;
+}*@
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(s => s.ReturnURL)
+
+    <h1>Login</h1>
+    <div>
+
+        @if (TempData["ErrorMSG"] != null)
+        {
+            <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
+            <br /><br />
+        }
+
+        @Html.TextBoxFor(s => s.Email, new { @placeholder = "Email", @class = "form-control" })
+        <br /> 
+        @Html.PasswordFor(s => s.Password, new { @placeholder = "Password", @class = "form-control" })
+        <br /> <br />
+        @Html.CheckBoxFor(s => s.isRemember) Remember ME
+        <br /> <br />
+        <button type="submit">Login</button>
+    </div>
+}
