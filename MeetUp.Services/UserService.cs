@@ -90,11 +90,15 @@
             }
         }
 
-        public void UpdateUserDetails(int id, string fullname, 
+        public void UpdateUser(int id, 
+            string fullname = null, 
             string description = null, 
             int? cityId = null, 
             DateTime? birthday = null, 
-            string password = null)
+            string password = null,
+            int? active = null,
+            int? deleted = null, 
+            int? banned = null)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -110,26 +114,17 @@
                     dbUser.Password = hashedPass;
                 }
                 
-                dbUser.FullName = fullname;
+                dbUser.FullName = fullname ?? dbUser.FullName;
                 dbUser.Description = description ?? dbUser.Description;
                 dbUser.CityId = cityId ?? dbUser.CityId;
                 dbUser.Birthday = birthday ?? dbUser.Birthday;
+                dbUser.Active = active ?? dbUser.Active;
+                dbUser.Deleted = deleted ?? dbUser.Deleted;
+                dbUser.Banned = banned ?? dbUser.Banned;
 
                 db.SaveChanges();
             }
         }
 
-        public void DeleteUser(int id)
-        {
-            using (var db = new MeetUpDbContext())
-            {
-                var dbUser = db.Users
-                    .Where(u => u.Id == id)
-                    .FirstOrDefault();
-
-                dbUser.Deleted = 1;
-                db.SaveChanges();
-            }
-        }
     }
 }
