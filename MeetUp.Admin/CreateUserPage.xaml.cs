@@ -9,7 +9,6 @@ namespace MeetUp.Admin
     /// </summary>
     public partial class CreateUserPage : Page
     {
-        
         private UserService userService;
 
         public CreateUserPage()
@@ -20,7 +19,8 @@ namespace MeetUp.Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             userService = new UserService();
-            userService.Create(EmailText.Text, PasswordNameText.Text, FullNameText.Text, DescriptionNameText.Text);
+            //userService.Create(EmailText.Text, PasswordNameText.Text, FullNameText.Text, DescriptionNameText.Text);
+            userService.Create(EmailText.Text, PasswordNameText.Text, FullNameText.Text);
 
             this.NavigationService.Navigate(new ListUsersPage());
         }

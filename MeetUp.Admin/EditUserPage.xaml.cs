@@ -1,5 +1,6 @@
 ﻿using MeetUp.Data.Models;
 using MeetUp.Services;
+using MeetUp.Services.Models.Users;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,7 +33,10 @@ namespace MeetUp.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            userService.updateUser(this.UserId, FullNameText.Text, EmailText.Text, DescriptionText.Text, PasswordText.Text);
+            var userServiceModel = new UserServiceModel();
+
+            userService.UpdateUserDetails(this.UserId, FullNameText.Text, DescriptionText.Text);
+
             this.NavigationService.Navigate(new ListUsersPage());
         }
 

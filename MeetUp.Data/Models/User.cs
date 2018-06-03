@@ -31,6 +31,12 @@
 
         public string Description { get; set; }
 
+        public int Active { get; set; } = 1;
+
+        public int Deleted { get; set; } = 0;
+
+        public int Banned { get; set; } = 0;
+
         public int CityId { get; set; } = 1;
 
         public City City { get; set; }
@@ -40,6 +46,7 @@
         public List<User> ThisUsersLikes { get; set; } = new List<User>();
 
         public List<User> UsersLikeThisUser { get; set; } = new List<User>();
+
 
         //public string City { get; set; }
     }

@@ -2,6 +2,7 @@
 {
     using Data;
     using Data.Models;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -79,6 +80,56 @@
             }
         }
 
-        
+        public User GetUserById(int id)
+        {
+            using (var db = new MeetUpDbContext())
+            {
+                return db.Users
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+            }
+        }
+
+        public void UpdateUserDetails(int id, string fullname, 
+            string description = null, 
+            int? cityId = null, 
+            DateTime? birthday = null, 
+            string password = null)
+        {
+            using (var db = new MeetUpDbContext())
+            {
+                var dbUser = db.Users
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+
+                if (password != null)
+                {
+                    var salt = dbUser.Salt;
+                    var hashedPass = HelperFunctions.Get_HASH_SHA512(password, dbUser.Email, salt);
+
+                    dbUser.Password = hashedPass;
+                }
+                
+                dbUser.FullName = fullname;
+                dbUser.Description = description ?? dbUser.Description;
+                dbUser.CityId = cityId ?? dbUser.CityId;
+                dbUser.Birthday = birthday ?? dbUser.Birthday;
+
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (var db = new MeetUpDbContext())
+            {
+                var dbUser = db.Users
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+
+                dbUser.Deleted = 1;
+                db.SaveChanges();
+            }
+        }
     }
 }
