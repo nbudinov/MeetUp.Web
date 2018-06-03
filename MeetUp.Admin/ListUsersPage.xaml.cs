@@ -32,7 +32,9 @@ namespace MeetUp.Admin
                 User users = new User
                 {
                     Id = u.Id,
-                    FullName = u.FullName
+                    FullName = u.FullName,
+                    Banned = u.Banned,
+                    Sex = u.Sex
                 };
                 usersFromDb.Add(users);
             }
@@ -49,7 +51,7 @@ namespace MeetUp.Admin
 
             if (b != null)
             {
-                this.users.DeleteUser(user.Id);
+                this.users.UpdateUser(user.Id, null, null, null, null, null, null, 1, null);
                 ((ObservableCollection<User>)listView.ItemsSource).Remove(user);
             }
         }
@@ -67,29 +69,6 @@ namespace MeetUp.Admin
             var editUserPage = new EditUserPage(user_id);
             this.NavigationService.Navigate(editUserPage);
         }
-
-        private void BanUser(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            User user = b.CommandParameter as User;
-            
-            if (b != null)
-            {
-                this.users.BanUser(user.Id);
-            }
-        }
-
-        private void UnbanUser(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            User user = b.CommandParameter as User;
-
-            if (b != null)
-            {
-                this.users.UnbanUser(user.Id);
-            }
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

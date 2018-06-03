@@ -16,17 +16,8 @@
                 <GridView>
                     <GridViewColumn Header="Full Name" Width="100" DisplayMemberBinding="{Binding FullName}"/>
                     <GridViewColumn Header="Sex" Width="50" DisplayMemberBinding="{Binding Sex}"/>
+                    <GridViewColumn Header="Banned" Width="50" DisplayMemberBinding="{Binding Banned}"/>
                     
-                    <GridViewColumn Header="Ban/Unban" Width="70">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Ban" Click="BanUser" CommandParameter="{Binding}"/>
-                                <!--TODO <Button Content="Unban" Click="UnbanUser" CommandParameter="{Binding}"/>-->
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    
-
                     <GridViewColumn Header="Edit" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

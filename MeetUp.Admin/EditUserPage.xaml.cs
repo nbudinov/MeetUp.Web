@@ -1,6 +1,7 @@
 ﻿using MeetUp.Data.Models;
 using MeetUp.Services;
 using MeetUp.Services.Models.Users;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,17 +29,40 @@ namespace MeetUp.Admin
             EmailText.Text = user.Email;
             FullNameText.Text = user.FullName;
             DescriptionText.Text = user.Description;
+            ActiveCheckbox.IsChecked = Convert.ToBoolean(user.Active);
 
+            // Show and hide ban/unban button
+            if (user.Banned == 1)
+            {
+                BanUserButton.Visibility = Visibility.Hidden;
+            } else
+            {
+                UnbanUserButton.Visibility = Visibility.Hidden; 
+            }
+            
         }
 
+        // Edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var userServiceModel = new UserServiceModel();
-
-            userService.UpdateUserDetails(this.UserId, FullNameText.Text, DescriptionText.Text);
-
+            // Todo add image
+            userService.UpdateUser(this.UserId, FullNameText.Text, DescriptionText.Text, null, null, PasswordText.Text, Convert.ToInt32(ActiveCheckbox.IsChecked), null, null);
             this.NavigationService.Navigate(new ListUsersPage());
         }
 
+        private void Button_Click_Ban(object sender, RoutedEventArgs e)
+        {
+            var userServiceModel = new UserServiceModel();
+            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 1);
+            this.NavigationService.Navigate(new ListUsersPage());
+        }
+
+        private void Button_Click_Unban(object sender, RoutedEventArgs e)
+        {
+            var userServiceModel = new UserServiceModel();
+            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 0);
+            this.NavigationService.Navigate(new ListUsersPage());
+        }
     }
 }

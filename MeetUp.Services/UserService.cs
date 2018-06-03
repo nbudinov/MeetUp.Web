@@ -31,7 +31,9 @@
                     Email = email,
                     Password = hashedPass,
                     Salt = salt,
-                    FullName = fullname
+                    FullName = fullname,
+                    CityId = 1,
+                    Sex = 1
                 };
 
                 db.Users.Add(user);

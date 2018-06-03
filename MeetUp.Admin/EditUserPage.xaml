@@ -11,7 +11,7 @@
     <Grid>
 
         <TextBox Text="{Binding Path=UserId}"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="49,334,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" Height="32"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="49,350,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" Height="32"/>
         <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Name="DescriptionText" Height="23" Margin="129,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -21,6 +21,10 @@
         <Label Content="Description" HorizontalAlignment="Left" Margin="45,275,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
         <Label Content="Passowrd" HorizontalAlignment="Left" Margin="45,217,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
         <TextBox HorizontalAlignment="Left" Name="PasswordText" Height="23" Margin="129,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Ban this user" Name="BanUserButton" HorizontalAlignment="Left" Margin="49,387,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Ban" Height="29"/>
+        <Button Content="Unban this user" Name="UnbanUserButton" HorizontalAlignment="Left" Margin="159,387,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_Unban" Height="29"/>
+        <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,319,0,0" VerticalAlignment="Top"/>
+
 
     </Grid>
 
