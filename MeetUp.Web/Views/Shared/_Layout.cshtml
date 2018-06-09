@@ -8,7 +8,65 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-default navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">MeetUp</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"  >
+                        @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "nav-link" })
+
+                        @*<a class="nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>*@
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>*@
+                    @*<li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>*@
+
+                    @if (Session["User"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href=""> @Session["User"]</a>
+                        </li>
+
+                        <li class="nav-item">
+                            @*<a class="nav-link" href=""> @Session["User"]</a>*@
+                            @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Register", "Register", "Account", new { }, new { @class="nav-link"})
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Login", "Account", new { }, new { @class = "nav-link" })
+                        </li>
+
+                        @*<ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        </ul>*@
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,7 +102,7 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="container body-content">
 
         @{
