@@ -22,7 +22,9 @@
                     {
                         Id = u.Id,
                         Name = u.FullName,
-                        Description = u.Description
+                        Description = u.Description,
+                        Banned = u.Banned,
+                        Sex = u.Sex
                     })
                     .ToList();
             }

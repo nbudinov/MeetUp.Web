@@ -54,7 +54,14 @@ namespace MeetUp.Admin
         {
             var userServiceModel = new UserServiceModel();
             // Todo add image
-            userService.UpdateUser(this.UserId, FullNameText.Text, DescriptionText.Text, null, DateTime.Parse(Birthday.Text), PasswordText.Text, Convert.ToInt32(ActiveCheckbox.IsChecked), null, null);
+            userService.UpdateUser(this.UserId, 
+                FullNameText.Text, 
+                DescriptionText.Text, 
+                null, 
+                DateTime.Parse(Birthday.Text), 
+                PasswordText.Text, 
+                Convert.ToInt32(ActiveCheckbox.IsChecked), 
+                null, null);
             this.NavigationService.Navigate(new ListUsersPage());
         }
 

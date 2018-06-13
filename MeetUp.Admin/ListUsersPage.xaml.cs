@@ -1,5 +1,6 @@
 ﻿using MeetUp.Data.Models;
 using MeetUp.Services;
+using MeetUp.Services.Models.Users;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -14,8 +15,8 @@ namespace MeetUp.Admin
     {
         private readonly UserService users;
 
-        public List<User> allUsers { get; set; }
-        public ObservableCollection<User> usersFromDb = new ObservableCollection<User>();
+        public IEnumerable<UserListingModel> allUsers { get; set; }
+        //public ObservableCollection<User> usersFromDb = new ObservableCollection<User>();
 
 
         public ListUsersPage()
@@ -27,19 +28,8 @@ namespace MeetUp.Admin
             allUsers = this.users.All();
             this.DataContext = this; //data binding 
 
-            foreach (User u in allUsers)
-            {
-                User users = new User
-                {
-                    Id = u.Id,
-                    FullName = u.FullName,
-                    Banned = u.Banned,
-                    Sex = u.Sex
-                };
-                usersFromDb.Add(users);
-            }
 
-            listView.ItemsSource = usersFromDb;
+            listView.ItemsSource = allUsers;
         }
 
 
@@ -63,8 +53,8 @@ namespace MeetUp.Admin
             w.ShowDialog();
             */
             Button b = sender as Button;
-            User user = b.CommandParameter as User;
-            var user_id = user.Id;
+            var c = b.CommandParameter as UserListingModel;
+            var user_id = c.Id;
 
             var editUserPage = new EditUserPage(user_id);
             this.NavigationService.Navigate(editUserPage);
