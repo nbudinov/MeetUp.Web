@@ -6,6 +6,8 @@
 
     public class UserServiceModel
     {
+        public int Id { get; set; }
+
         public string Email { get; set; }
 
         [MinLength(6)]

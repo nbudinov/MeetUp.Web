@@ -27,6 +27,10 @@ namespace MeetUp.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Scripts/js").Include(
+                      "~/Scripts/js/ImageUpload.js"
+                      ));
         }
     }
 }

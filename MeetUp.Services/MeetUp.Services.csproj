@@ -49,8 +49,10 @@
   <ItemGroup>
     <Compile Include="CityService.cs" />
     <Compile Include="HelperFunctions.cs" />
+    <Compile Include="Models\Users\UserImageModel.cs" />
     <Compile Include="Models\Users\UserListingModel.cs" />
     <Compile Include="Models\Users\UserServiceModel.cs" />
+    <Compile Include="Models\Users\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

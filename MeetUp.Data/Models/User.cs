@@ -47,7 +47,6 @@
 
         public List<User> UsersLikeThisUser { get; set; } = new List<User>();
 
-
-        //public string City { get; set; }
+        public List<Image> Images { get; set; } = new List<Image>();
     }
 }

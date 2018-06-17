@@ -45,3 +45,28 @@ body {
 .pagination {
     margin-bottom: 30px;
 }
+
+
+#album {
+    overflow: auto;
+}
+
+ul.stage {
+    padding-left: 0;
+    white-space: nowrap;
+    width: 200%;
+}
+
+li.image-wrapper {
+    display: inline-block;
+    width: 20%;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+span {
+    display: block;
+}

@@ -56,8 +56,13 @@
     <Compile Include="Migrations\201806031125525_UserActiceDeletedBannedFields.Designer.cs">
       <DependentUpon>201806031125525_UserActiceDeletedBannedFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806161715343_UserImages.cs" />
+    <Compile Include="Migrations\201806161715343_UserImages.Designer.cs">
+      <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806031125525_UserActiceDeletedBannedFields.resx">
       <DependentUpon>201806031125525_UserActiceDeletedBannedFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806161715343_UserImages.resx">
+      <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

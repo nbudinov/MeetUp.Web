@@ -9,12 +9,13 @@
 
     public class UserService
     {
-        public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10)
+        public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {
             using (var db = new MeetUpDbContext())
             {
                 return db
                     .Users
+                    .Where(u => u.Id != withoutUserId)
                     .OrderByDescending(u => u.Id)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
@@ -24,18 +25,56 @@
                         Name = u.FullName,
                         Description = u.Description,
                         Banned = u.Banned,
-                        Sex = u.Sex
+                        Sex = u.Sex,
+                        Images = u.Images.Select(i => new UserImageModel
+                        {
+                            Id = i.Id,
+                            Path = i.Path,
+                            Size = i.Size                            
+                        })
                     })
                     .ToList();
             }
         }
 
-        public User GetUserById(int id)
+        public UserViewModel GetUserById(int id)
         {
             using (var db = new MeetUpDbContext())
             {
                 return db.Users
                     .Where(u => u.Id == id)
+                    .Select(u => new UserViewModel
+                    {
+                        Id = u.Id,
+                        FullName = u.FullName,
+                        Email = u.Email,
+                        City = u.City.Name,
+                        Birthday = u.Birthday,
+                        Description = u.Description,
+                        Sex = u.Sex,
+                        Images = u.Images.Select(i => new UserImageModel
+                        {
+                            Id = i.Id,
+                            Path = i.Path,
+                            Size = i.Size
+                        })
+                    })
+                    .FirstOrDefault();
+            }
+        }
+
+        public UserServiceModel GetUserByEmail(string email)
+        {
+            using (var db = new MeetUpDbContext())
+            {
+                return db.Users
+                    .Where(u => u.Email == email)
+                    .Select(u => new UserServiceModel
+                    {
+                        Id = u.Id,
+                        Email = u.Email,
+                        FullName = u.FullName
+                    })
                     .FirstOrDefault();
             }
         }
@@ -81,6 +120,33 @@
             using (var db = new MeetUpDbContext())
             {
                 return db.Users.Count();
+            }
+        }
+
+        public bool SaveUserImage(int userId, string imagePath, int imageSize)
+        {
+            using (var db = new MeetUpDbContext())
+            {
+                var user = db.Users
+                    .Where(u => u.Id == userId)
+                    .FirstOrDefault();
+
+                if(user == null)
+                {
+                    return false;
+                }
+
+                var image = new Image
+                {
+                    Path = imagePath,
+                    UserId = userId,
+                    Size = imageSize
+                };
+
+                user.Images.Add(image);
+                db.SaveChanges();
+
+                return true;
             }
         }
 

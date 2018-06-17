@@ -17,28 +17,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"  >
+                    <li class="nav-item active">
                         @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "nav-link" })
 
                         @*<a class="nav-link" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>*@
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>*@
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>*@
+                            <a class="nav-link" href="#">About</a>
+                        </li>*@
                     @*<li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>*@
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>*@
 
                     @if (Session["User"] != null)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href=""> @Session["User"]</a>
+                            <a class="nav-link" href="/myprofile"> @Session["User"]</a>
                         </li>
 
                         <li class="nav-item">
@@ -49,16 +49,16 @@
                     else
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("Register", "Register", "Account", new { }, new { @class="nav-link"})
+                            @Html.ActionLink("Register", "Register", "Account", new { }, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Login", "Login", "Account", new { }, new { @class = "nav-link" })
                         </li>
 
                         @*<ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                        </ul>*@
+                                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                            </ul>*@
                     }
                 </ul>
             </div>
@@ -67,42 +67,42 @@
 
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @if (Session["User"] != null)
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href=""> @Session["User"]</a>
-                        </li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>
-                }
-                else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    </ul>
-                }
+                    @if (Session["User"] != null)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href=""> @Session["User"]</a>
+                            </li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
 
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                        </ul>
+                    }
+
+                </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <div class="container body-content">
 
         @{
@@ -118,6 +118,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/js")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
