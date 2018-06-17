@@ -21,6 +21,8 @@ namespace MeetUp.Services.Models.Users
             }
         }
 
+        public string Extension { get; set; }
+
         public int Size { get; set; }
     }
 }

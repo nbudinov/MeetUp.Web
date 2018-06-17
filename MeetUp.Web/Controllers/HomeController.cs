@@ -12,6 +12,7 @@
     public class HomeController : Controller
     {
         private const int PageSize = 1;
+        private const string IMAGES_SAVE_PAGE = "~/Files/UsersImgs/";
 
         private readonly UserService users;
 
@@ -65,10 +66,10 @@
                 if (file != null && file.ContentLength > 0)
                 {
                     var InputFileName = Path.GetFileName(file.FileName);
-                    var ServerSavePath = Path.Combine(Server.MapPath("~/Files/UsersImgs/") + userId + InputFileName);
+                    var ServerSavePath = Path.Combine(Server.MapPath(IMAGES_SAVE_PAGE) + userId + InputFileName);
                     file.SaveAs(ServerSavePath);
 
-                    this.users.SaveUserImage(userId, ServerSavePath, file.ContentLength);
+                    //this.users.SaveUserImage(userId, ServerSavePath, file.ContentLength);
                 }
             }
 
@@ -77,14 +78,37 @@
             return Redirect("/myprofile");
         }
 
+        [HttpPost]
+        public void Upload()
+        {
+            var userId = (int)Session["UserId"];
+
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var file = Request.Files[i];
+                var ext = Path.GetExtension(file.FileName);
+
+                var fileName = Guid.NewGuid();
+                var fileNameString = fileName.ToString();
+                var fileNameStringWithExt = fileNameString + ext;
+                //Path.GetFileName(file.FileName);
+
+                var path = Path.Combine(Server.MapPath("~/Files/UsersImgs/"), fileNameStringWithExt);
+                file.SaveAs(path);
+
+                this.users.SaveUserImage(userId, path, file.ContentLength, ext);
+            }
+
+        }
+
         [HttpGet]
-        public ActionResult GetImage(string id)
+        public ActionResult GetImage(string id, string ext = ".jpg")
         {
             if(id != null)
             {
                 var dir = Server.MapPath("/Files/UsersImgs");
-                var path = Path.Combine(dir, id + ".jpg");
-                var file = base.File(path, "image/jpg");
+                var path = Path.Combine(dir, id + ext);
+                var file = base.File(path, "image/" + ext.Split(new char[] { '.' }).Last());
                 return file;
             }
 

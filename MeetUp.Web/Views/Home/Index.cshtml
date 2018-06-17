@@ -10,13 +10,14 @@
 <div class="row">
     @foreach (var user in Model.Users)
     {
-        var firstImageName = user.Images.Any() ? user.Images.First().Name : "";
+        var firstImageName = user.Images.Any() ? user.Images.First().Name : "defaultProfilePhoto";
+        var ext = (user.Images.Any() && user.Images.First().Extension != null) ? 
+            user.Images.First().Extension : ".png";
 
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
                 <a href="/users/view/@user.Id">
-                    <img class="card-img-top" src="~/Home/GetImage/@firstImageName" alt="">
-                    <img class="card-img-top" src="" alt="">
+                    <img class="card-img-top" src="~/Home/GetImage/@firstImageName?ext=@ext" alt="">
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">

@@ -18,16 +18,31 @@
     <!-- /.col-lg-3 -->
     <div class="col-lg-12">
         <div class="card mt-4">
-            <div id="album">
-                <ul class="stage">
+            <div id="">
+                <ul id="lightSlider" class="lightslider">
                     @foreach (var img in Model.Images)
                     {
-                        <li class="image-wrapper">
-                            <img src="~/Home/GetImage/@img.Name" />
+                        <li class="">
+                            <img src="~/Home/GetImage/@img.Name" width="400">
                             <span></span>
                         </li>
                     }
-
+                   
+                    @*<li class="">
+            <img src="http://i.imgur.com/dj7aqdo.jpg" />
+            <span>Caption 1</span>
+        <li class="">
+            <img src="http://i.imgur.com/dj7aqdo.jpg" />
+            <span>Caption 2</span>
+        <li class="">
+            <img src="http://i.imgur.com/dj7aqdo.jpg" />
+            <span>Caption 3</span>
+        <li class="">
+            <img src="http://i.imgur.com/dj7aqdo.jpg" />
+            <span>Caption 4</span>
+        <li class="">
+            <img src="http://i.imgur.com/dj7aqdo.jpg" />
+            <span>Caption 5</span>*@
                 </ul>
             </div>
 

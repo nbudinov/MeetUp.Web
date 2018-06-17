@@ -24,6 +24,8 @@ namespace MeetUp.Services.Models.Users
 
         public int Banned { get; set; }
 
+        public int Active { get; set; }
+
         public IEnumerable<UserImageModel> Images { get; set; } = new List<UserImageModel>();
     }
 }

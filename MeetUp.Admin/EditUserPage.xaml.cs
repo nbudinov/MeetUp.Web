@@ -12,7 +12,7 @@ namespace MeetUp.Admin
     /// </summary>
     public partial class EditUserPage : Page
     {
-        private User user;
+        private UserViewModel user;
         private int UserId;
         private UserService userService;
 

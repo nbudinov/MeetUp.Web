@@ -19,14 +19,30 @@
     <!-- /.col-lg-3 -->
     <div class="col-lg-12">
         <div class="card mt-4">
+            <ul id="lightSlider" class="lightslider">
+                @foreach (var img in Model.Images)
+                {
+                    <li class="">
+                        <img src="~/Home/GetImage/@img.Name?ext=@img.Extension" width="400">
+                        <span></span>
+                    </li>
+                }
+                <li class="">
+                    <input type="file" id="imageUploadForm" name="image" multiple="multiple" style="display:none" />
 
-            @using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    <img src="~/Home/GetImage/uploadPhoto" class="uploadPhoto" width="300">
+                    <span></span>
+                </li>
+
+            </ul>
+
+            @*@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <input type="file" name="files" multiple />
-                <button class="btn btn-default">Upload</button>
-            }
+            <input type="file" name="files" multiple />
+            <button class="btn btn-default">Upload</button>
+            }*@
 
-            <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+            @*<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">*@
             <div class="card-body">
                 <h3 class="card-title">@Model.FullName</h3>
                 <h4>@Model.City</h4>

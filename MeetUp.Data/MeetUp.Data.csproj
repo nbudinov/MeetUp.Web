@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201806161715343_UserImages.Designer.cs">
       <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806171407400_UserImageExtensionAdded.cs" />
+    <Compile Include="Migrations\201806171407400_UserImageExtensionAdded.Designer.cs">
+      <DependentUpon>201806171407400_UserImageExtensionAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Image.cs" />
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806161715343_UserImages.resx">
       <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171407400_UserImageExtensionAdded.resx">
+      <DependentUpon>201806171407400_UserImageExtensionAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

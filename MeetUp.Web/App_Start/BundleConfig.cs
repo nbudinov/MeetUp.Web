@@ -25,11 +25,16 @@ namespace MeetUp.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"
+                      "~/Content/site.css",
+                      "~/Content/lightslider.min.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Scripts/js").Include(
                       "~/Scripts/js/ImageUpload.js"
+                      ));
+
+            bundles.Add(new StyleBundle("~/Scripts/lightslider.js").Include(
+                      "~/Scripts/js/lightslider.min.js"
                       ));
         }
     }

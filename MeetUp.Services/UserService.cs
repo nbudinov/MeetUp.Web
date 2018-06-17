@@ -30,7 +30,8 @@
                         {
                             Id = i.Id,
                             Path = i.Path,
-                            Size = i.Size                            
+                            Size = i.Size,
+                            Extension = i.Extension
                         })
                     })
                     .ToList();
@@ -52,11 +53,14 @@
                         Birthday = u.Birthday,
                         Description = u.Description,
                         Sex = u.Sex,
+                        Active = u.Active,
+                        Banned = u.Banned,
                         Images = u.Images.Select(i => new UserImageModel
                         {
                             Id = i.Id,
                             Path = i.Path,
-                            Size = i.Size
+                            Size = i.Size,
+                            Extension = i.Extension
                         })
                     })
                     .FirstOrDefault();
@@ -123,7 +127,7 @@
             }
         }
 
-        public bool SaveUserImage(int userId, string imagePath, int imageSize)
+        public bool SaveUserImage(int userId, string imagePath, int imageSize, string extension)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -140,7 +144,8 @@
                 {
                     Path = imagePath,
                     UserId = userId,
-                    Size = imageSize
+                    Size = imageSize, 
+                    Extension = extension
                 };
 
                 user.Images.Add(image);

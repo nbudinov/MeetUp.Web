@@ -6,6 +6,8 @@
 
         public string Path { get; set; }
 
+        public string Extension { get; set; }
+
         public int Size { get; set; }
 
         public User User { get; set; }
