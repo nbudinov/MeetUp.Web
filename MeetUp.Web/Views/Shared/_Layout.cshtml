@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using MeetUp.Web.Helpers
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,48 +19,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "nav-link" })
+                    @Html.ListItemAction("Home", "Index", "Home")
 
-                        @*<a class="nav-link" href="#">
-                                Home
-                                <span class="sr-only">(current)</span>
-                            </a>*@
-                    </li>
                     @*<li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>*@
-                    @*<li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>*@
+            <a class="nav-link" href="#">About</a>
+        </li>*@
 
                     @if (Session["User"] != null)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/myprofile"> @Session["User"]</a>
-                        </li>
+                        @Html.ListItemAction(Session["User"].ToString(), "myprofile", "Home")
+                        @Html.ListItemAction("Logout", "Logout", "Account")
 
-                        <li class="nav-item">
-                            @*<a class="nav-link" href=""> @Session["User"]</a>*@
-                            @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "nav-link" })
-                        </li>
+
+                        @*@Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "nav-link" })*@
                     }
                     else
                     {
-                        <li class="nav-item">
-                            @Html.ActionLink("Register", "Register", "Account", new { }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Login", "Login", "Account", new { }, new { @class = "nav-link" })
-                        </li>
-
-                        @*<ul class="nav navbar-nav navbar-right">
-                                <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                                <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                            </ul>*@
+                        @Html.ListItemAction("Register", "Register", "Account")
+                        @Html.ListItemAction("Login", "Login", "Account")
                     }
                 </ul>
             </div>
@@ -112,7 +90,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - BudinovInc.</p>
         </footer>
     </div>
 

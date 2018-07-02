@@ -18,5 +18,9 @@
         public int NextPage => this.CurrentPage == this.TotalPages
             ? this.TotalPages
             : this.CurrentPage + 1;
+
+        public string DefaultUserImagePath { get; set; } = "defaultProfilePhoto";
+
+        public string DefaultUserImageExt { get; set; } = ".png";
     }
 }

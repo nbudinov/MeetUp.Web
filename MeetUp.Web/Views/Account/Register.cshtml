@@ -3,11 +3,36 @@
     ViewBag.Title = "Register";
 }
 
-
 <h2>@ViewBag.Title</h2>
 
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div>
 
-<form method="post" action="/Account/Register" class="form-horizontal">
+        @*@if (TempData["ErrorMSG"] != null)
+        {
+            <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
+            <br /><br />
+        }*@
+
+        @Html.TextBoxFor(s => s.Email, new { @placeholder = "Email", @class = "form-control" })
+        <br /> 
+
+        @Html.TextBoxFor(s => s.FullName, new { @placeholder = "Full name", @class = "form-control" })
+        <br /> 
+
+        @Html.PasswordFor(s => s.Password, new { @placeholder = "Password", @class = "form-control" })
+        <br />
+
+        @Html.PasswordFor(s => s.ConfirmPassword, new { @placeholder = "Confirm password", @class = "form-control" })
+
+        <br /> 
+        <button type="submit" class="btn btn-success">Register</button>
+    </div>
+}
+
+
+@*<form method="post" action="/Account/Register" class="form-horizontal">
     <div class="form-group">
         <label class="control-label col-sm-2" for="email">Email:</label>
         <div class="col-sm-10">
@@ -41,4 +66,4 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </div>
     </div>
-</form>
+</form>*@

@@ -129,13 +129,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MeetUp.AdminServices\MeetUp.AdminServices.csproj">
+      <Project>{0eb98be2-c0b2-41b1-b1c8-2500914f885b}</Project>
+      <Name>MeetUp.AdminServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeetUp.Data\MeetUp.Data.csproj">
       <Project>{794e28d2-8a61-42f1-8706-a3519f6c4792}</Project>
       <Name>MeetUp.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeetUp.Services\MeetUp.Services.csproj">
-      <Project>{aba5f999-88d6-4250-bd93-e726647710ee}</Project>
-      <Name>MeetUp.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\MeetUp.Web\MeetUp.Web.csproj">
       <Project>{766c707a-5d5f-400e-8d28-6dffdeef1b2a}</Project>

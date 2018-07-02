@@ -8,11 +8,11 @@
 
     public class AccountController : Controller
     {
-        private readonly UserService users;
+        private readonly IUserService users;
 
-        public AccountController()
+        public AccountController(IUserService users)
         {
-            this.users = new UserService();
+            this.users = users;
         }
 
         public ActionResult Register()
@@ -25,7 +25,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(model);
             }
 
             var success = this.users.Create(model.Email, model.Password, model.FullName);
@@ -33,7 +33,7 @@
             if (!success)
             {
                 ModelState.AddModelError("emailError", "Email address is taken");
-                return this.View();
+                return this.View(model);
             }
 
             TempData["Success"] = "Successfully registered. You can now log in!";

@@ -1,6 +1,6 @@
 ﻿using MeetUp.Data.Models;
-using MeetUp.Services;
-using MeetUp.Services.Models.Users;
+using MeetUp.AdminServices;
+using MeetUp.AdminServices.Models.Users;
 using System;
 using System.Windows;
 using System.Windows.Controls;

@@ -1,21 +1,16 @@
-﻿using MeetUp.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace MeetUp.Web.Controllers
+﻿namespace MeetUp.Web.Controllers
 {
+    using MeetUp.Services;
+    using System.Web.Mvc;
+
     public class UsersController : Controller
     {
-        private readonly UserService users;
+        private readonly IUserService users;
 
-        public UsersController()
+        public UsersController(IUserService users)
         {
-            this.users = new UserService();
+            this.users = users;
         }
-
 
         public ActionResult Index()
         {

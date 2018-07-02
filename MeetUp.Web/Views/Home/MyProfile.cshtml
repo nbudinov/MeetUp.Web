@@ -23,14 +23,14 @@
                 @foreach (var img in Model.Images)
                 {
                     <li class="">
-                        <img src="~/Home/GetImage/@img.Name?ext=@img.Extension" width="400">
+                        <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
                         <span></span>
                     </li>
                 }
                 <li class="">
                     <input type="file" id="imageUploadForm" name="image" multiple="multiple" style="display:none" />
 
-                    <img src="~/Home/GetImage/uploadPhoto" class="uploadPhoto" width="300">
+                    <img src="~/Files/GetImage/uploadPhoto" class="uploadPhoto" width="300">
                     <span></span>
                 </li>
 

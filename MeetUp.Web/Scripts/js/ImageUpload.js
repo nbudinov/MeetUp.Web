@@ -23,7 +23,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: '/Home/Upload',
+            url: '/Files/Upload',
             data: formData,
             contentType: false,
             processData: false,

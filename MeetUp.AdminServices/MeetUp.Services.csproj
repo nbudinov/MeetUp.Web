@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="CityService.cs" />
     <Compile Include="HelperFunctions.cs" />
-    <Compile Include="IUserService.cs" />
     <Compile Include="Models\Users\UserImageModel.cs" />
     <Compile Include="Models\Users\UserListingModel.cs" />
     <Compile Include="Models\Users\UserServiceModel.cs" />

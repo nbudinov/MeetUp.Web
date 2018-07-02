@@ -1,4 +1,4 @@
-﻿using MeetUp.Services;
+﻿using MeetUp.AdminServices;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System;

@@ -1,4 +1,4 @@
-﻿namespace MeetUp.Services
+﻿namespace MeetUp.AdminServices
 {
     using Data;
     using Data.Models;
@@ -7,45 +7,41 @@
     using System.Linq;
     using Models.Users;
 
-    public class UserService : IUserService
+    public class UserService
     {
-        public MeetUpDbContext db;
-
-        public UserService(MeetUpDbContext db)
-        {
-            this.db = db;
-        }
-        
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {
-            return this.db
-                .Users
-                .Where(u => u.Id != withoutUserId)
-                .OrderByDescending(u => u.Id)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(u => new UserListingModel
-                {
-                    Id = u.Id,
-                    Name = u.FullName,
-                    Description = u.Description,
-                    Banned = u.Banned,
-                    Sex = u.Sex,
-                    Images = u.Images.Select(i => new UserImageModel
+            using (var db = new MeetUpDbContext())
+            {
+                return db
+                    .Users
+                    .Where(u => u.Id != withoutUserId)
+                    .OrderByDescending(u => u.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .Select(u => new UserListingModel
                     {
-                        Id = i.Id,
-                        Path = i.Path,
-                        Size = i.Size,
-                        Extension = i.Extension
+                        Id = u.Id,
+                        Name = u.FullName,
+                        Description = u.Description,
+                        Banned = u.Banned,
+                        Sex = u.Sex,
+                        Images = u.Images.Select(i => new UserImageModel
+                        {
+                            Id = i.Id,
+                            Path = i.Path,
+                            Size = i.Size,
+                            Extension = i.Extension
+                        })
                     })
-                })
-                .ToList();
+                    .ToList();
+            }
         }
 
         public UserViewModel GetUserById(int id)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 return db.Users
                     .Where(u => u.Id == id)
                     .Select(u => new UserViewModel
@@ -68,13 +64,13 @@
                         })
                     })
                     .FirstOrDefault();
-            //}
+            }
         }
 
         public UserServiceModel GetUserByEmail(string email)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 return db.Users
                     .Where(u => u.Email == email)
                     .Select(u => new UserServiceModel
@@ -84,7 +80,7 @@
                         FullName = u.FullName
                     })
                     .FirstOrDefault();
-            //}
+            }
         }
 
         public void UpdateUser(int id, 
@@ -97,8 +93,8 @@
             int? deleted = null, 
             int? banned = null)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 var dbUser = db.Users
                     .Where(u => u.Id == id)
                     .FirstOrDefault();
@@ -120,15 +116,15 @@
                 dbUser.Banned = banned ?? dbUser.Banned;
 
                 db.SaveChanges();
-            //}
+            }
         }
 
         public int Count()
         {
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 return db.Users.Count();
-            //}
+            }
         }
 
         public bool SaveUserImage(int userId, string imagePath, int imageSize, string extension)
@@ -161,8 +157,8 @@
 
         public bool Create(string email, string password, string fullname)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 var mailExists = db.Users.Any(u => u.Email == email);
 
                 if (mailExists)
@@ -187,7 +183,7 @@
                 db.SaveChanges();
 
                 return true;
-            //}
+            }
         }
 
         public bool Login(string email, string password)
@@ -195,8 +191,8 @@
             string realHashedPassword = string.Empty;
             byte[] salt = new byte[HelperFunctions.saltLengthLimit];
 
-            //using (var db = new MeetUpDbContext())
-            //{
+            using (var db = new MeetUpDbContext())
+            {
                 var user = db.Users
                     .Where(u => u.Email == email)
                     .FirstOrDefault();
@@ -219,7 +215,7 @@
 
                 return false;
             }
-        //}
+        }
 
     }
 }

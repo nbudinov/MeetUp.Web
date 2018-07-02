@@ -23,7 +23,7 @@
                     @foreach (var img in Model.Images)
                     {
                         <li class="">
-                            <img src="~/Home/GetImage/@img.Name" width="400">
+                            <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
                             <span></span>
                         </li>
                     }
