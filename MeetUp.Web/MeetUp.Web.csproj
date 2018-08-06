@@ -203,6 +203,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\ImageUpload.js" />
+    <Content Include="Scripts\js\LikesController.js" />
     <Content Include="Scripts\lightslider.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -228,6 +229,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Users\View.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Home\WhoILike.cshtml" />
+    <Content Include="Views\Home\WhoLikesMe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

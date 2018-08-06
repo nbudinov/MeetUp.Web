@@ -27,9 +27,11 @@
 
                     @if (Session["User"] != null)
                     {
+                        @Html.ListItemAction("Who I Like", "WhoILike", "Home")
+                        @Html.ListItemAction("Who Likes Me", "WhoLikesMe", "Home")
+
                         @Html.ListItemAction(Session["User"].ToString(), "myprofile", "Home")
                         @Html.ListItemAction("Logout", "Logout", "Account")
-
 
                         @*@Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "nav-link" })*@
                     }

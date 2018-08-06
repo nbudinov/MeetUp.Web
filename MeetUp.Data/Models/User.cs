@@ -37,16 +37,16 @@
 
         public int Banned { get; set; } = 0;
 
-        public int CityId { get; set; } = 1;
+        public int? CityId { get; set; }
 
-        public City City { get; set; }
+        public virtual City City { get; set; }
 
-        public List<Post> Posts { get; set; } = new List<Post>();
+        public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 
-        public List<User> ThisUsersLikes { get; set; } = new List<User>();
+        public virtual ICollection<User> ThisUserLikes { get; set; } = new HashSet<User>();
 
-        public List<User> UsersLikeThisUser { get; set; } = new List<User>();
+        public virtual ICollection<User> UsersLikeThisUser { get; set; } = new HashSet<User>();
 
-        public List<Image> Images { get; set; } = new List<Image>();
+        public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

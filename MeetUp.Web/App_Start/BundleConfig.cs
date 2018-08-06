@@ -29,9 +29,13 @@ namespace MeetUp.Web
                       "~/Content/lightslider.min.css"
                       ));
 
-            bundles.Add(new StyleBundle("~/Scripts/js").Include(
-                      "~/Scripts/js/ImageUpload.js"
-                      ));
+            //bundles.Add(new StyleBundle("~/Scripts/js").Include(
+            //          "~/Scripts/js/ImageUpload.js"
+            //          ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/js")
+                .IncludeDirectory("~/Scripts/js", "*.js", true));
+
 
             bundles.Add(new StyleBundle("~/Scripts/lightslider.js").Include(
                       "~/Scripts/js/lightslider.min.js"

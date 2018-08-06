@@ -27,22 +27,22 @@
                             <span></span>
                         </li>
                     }
-                   
+
                     @*<li class="">
-            <img src="http://i.imgur.com/dj7aqdo.jpg" />
-            <span>Caption 1</span>
-        <li class="">
-            <img src="http://i.imgur.com/dj7aqdo.jpg" />
-            <span>Caption 2</span>
-        <li class="">
-            <img src="http://i.imgur.com/dj7aqdo.jpg" />
-            <span>Caption 3</span>
-        <li class="">
-            <img src="http://i.imgur.com/dj7aqdo.jpg" />
-            <span>Caption 4</span>
-        <li class="">
-            <img src="http://i.imgur.com/dj7aqdo.jpg" />
-            <span>Caption 5</span>*@
+                        <img src="http://i.imgur.com/dj7aqdo.jpg" />
+                        <span>Caption 1</span>
+                    <li class="">
+                        <img src="http://i.imgur.com/dj7aqdo.jpg" />
+                        <span>Caption 2</span>
+                    <li class="">
+                        <img src="http://i.imgur.com/dj7aqdo.jpg" />
+                        <span>Caption 3</span>
+                    <li class="">
+                        <img src="http://i.imgur.com/dj7aqdo.jpg" />
+                        <span>Caption 4</span>
+                    <li class="">
+                        <img src="http://i.imgur.com/dj7aqdo.jpg" />
+                        <span>Caption 5</span>*@
                 </ul>
             </div>
 
@@ -50,8 +50,8 @@
             <div class="card-body">
                 <h3 class="card-title">@Model.FullName</h3>
                 <h4>@Model.City</h4>
+                <h6>@Model.Email</h6>
                 <p class="">
-
                 </p>
                 <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                 4.0 stars
@@ -60,20 +60,33 @@
         <!-- /.card -->
         <div class="card card-outline-secondary my-4">
             <div class="card-header">
-                Product Reviews
+                A few words about me...
             </div>
             <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <p>@Model.Description</p>
+                @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
                 <small class="text-muted">Posted by Anonymous on 3/1/17</small>
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
                 <small class="text-muted">Posted by Anonymous on 3/1/17</small>
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>*@
                 <hr>
-                <a href="#" class="btn btn-success">Leave a Review</a>
+                @*<a href="#" class="btn btn-success">Leave a Review</a>*@
             </div>
+
+
+        </div>
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                Interests
+            </div>
+            <div class="card-body">
+                <p>@Model.Description</p>
+            </div>
+
+
         </div>
         <!-- /.card -->
     </div>

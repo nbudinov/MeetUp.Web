@@ -10,7 +10,7 @@
 
     public class HomeController : Controller
     {
-        private const int PageSize = 1;
+        private const int PageSize = 2;
 
         private readonly IUserService users;
 
@@ -52,6 +52,30 @@
             var user = users.GetUserById(currUserId);
 
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult LikeUser(int id)
+        {
+            var data = new Dictionary<string, string>();
+
+            if(Session["UserId"] == null)
+            {
+                data.Add("error", "Not logged in");
+            }
+            else
+            {
+                var userLiking = (int)Session["UserId"];
+
+                this.users.LikeUser(userLiking, id);
+
+                data.Add("success", "1");
+                data.Add("likedUser", id.ToString());
+            }
+
+            //this.users.LikeUser()
+
+            return Json(data) ;
         }
 
         //[HttpPost]
@@ -113,14 +137,14 @@
         //    return null;
         //}
 
-        public ActionResult About()
+        public ActionResult WhoILike()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult WhoLikesMe()
         {
             ViewBag.Message = "Your contact page.";
 

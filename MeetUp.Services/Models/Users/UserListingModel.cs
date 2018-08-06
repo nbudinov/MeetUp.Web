@@ -16,5 +16,9 @@
         public int Banned { get; set; }
 
         public IEnumerable<UserImageModel> Images { get; set; } = new List<UserImageModel>();
+
+        public List<User> ThisUsersLikes { get; set; } = new List<User>();
+
+        public List<User> UsersLikeThisUser { get; set; } = new List<User>();
     }
 }

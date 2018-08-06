@@ -37,7 +37,9 @@
                         Path = i.Path,
                         Size = i.Size,
                         Extension = i.Extension
-                    })
+                    }),
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    UsersLikeThisUser = u.UsersLikeThisUser.ToList()
                 })
                 .ToList();
         }
@@ -73,18 +75,15 @@
 
         public UserServiceModel GetUserByEmail(string email)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
-                return db.Users
-                    .Where(u => u.Email == email)
-                    .Select(u => new UserServiceModel
-                    {
-                        Id = u.Id,
-                        Email = u.Email,
-                        FullName = u.FullName
-                    })
-                    .FirstOrDefault();
-            //}
+            return db.Users
+                .Where(u => u.Email == email && u.Active == 1 && u.Deleted == 0)
+                .Select(u => new UserServiceModel
+                {
+                    Id = u.Id,
+                    Email = u.Email,
+                    FullName = u.FullName
+                })
+                .FirstOrDefault();
         }
 
         public void UpdateUser(int id, 
@@ -125,10 +124,7 @@
 
         public int Count()
         {
-            //using (var db = new MeetUpDbContext())
-            //{
-                return db.Users.Count();
-            //}
+            return db.Users.Count();
         }
 
         public bool SaveUserImage(int userId, string imagePath, int imageSize, string extension)
@@ -159,18 +155,53 @@
             }
         }
 
+        public bool LikeUser(int userLikingId, int userLikedId)
+        {
+            var likingUser = this.db
+                .Users
+                .Where(u => u.Id == userLikingId)             
+                .FirstOrDefault();
+
+            var likedUser = this.db
+                .Users
+                .Where(u => u.Id == userLikedId)
+                .FirstOrDefault();
+
+            if (likingUser == null || likedUser == null)
+            {
+                return false;
+            }
+
+            var toLike = !likingUser.ThisUserLikes.Any(u => u.Id == likedUser.Id);
+
+            if (toLike)
+            {
+                likingUser.ThisUserLikes.Add(likedUser);
+                likedUser.UsersLikeThisUser.Add(likingUser);
+            }
+            else
+            {
+                likingUser.ThisUserLikes.Remove(likedUser);
+                likedUser.UsersLikeThisUser.Remove(likingUser);
+            }
+
+            db.SaveChanges();
+
+            return true;
+        }
+
         public bool Create(string email, string password, string fullname)
         {
             //using (var db = new MeetUpDbContext())
             //{
-                var mailExists = db.Users.Any(u => u.Email == email);
+                var mailExists = db.Users.Any(u => u.Email == email && u.Deleted == 0);
 
                 if (mailExists)
                 {
                     return false;
                 }
 
-                var salt = HelperFunctions.Get_SALT();
+                var salt = HelperFunctions.GetSalt();
                 var hashedPass = HelperFunctions.Get_HASH_SHA512(password, email, salt);
 
                 var user = new User
@@ -178,9 +209,7 @@
                     Email = email,
                     Password = hashedPass,
                     Salt = salt,
-                    FullName = fullname,
-                    CityId = 1,
-                    Sex = 1
+                    FullName = fullname
                 };
 
                 db.Users.Add(user);
@@ -198,7 +227,7 @@
             //using (var db = new MeetUpDbContext())
             //{
                 var user = db.Users
-                    .Where(u => u.Email == email)
+                    .Where(u => u.Email == email && u.Active == 1 && u.Deleted == 0)
                     .FirstOrDefault();
 
                 if (user == null)

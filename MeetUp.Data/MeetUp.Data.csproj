@@ -48,27 +48,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeetUpDbContext.cs" />
-    <Compile Include="Migrations\201806021824334_InitialMigration.cs" />
-    <Compile Include="Migrations\201806021824334_InitialMigration.Designer.cs">
-      <DependentUpon>201806021824334_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201807291012470_InitialCreate.cs" />
+    <Compile Include="Migrations\201807291012470_InitialCreate.Designer.cs">
+      <DependentUpon>201807291012470_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806031125525_UserActiceDeletedBannedFields.cs" />
-    <Compile Include="Migrations\201806031125525_UserActiceDeletedBannedFields.Designer.cs">
-      <DependentUpon>201806031125525_UserActiceDeletedBannedFields.cs</DependentUpon>
+    <Compile Include="Migrations\201807291017026_CityFix.cs" />
+    <Compile Include="Migrations\201807291017026_CityFix.Designer.cs">
+      <DependentUpon>201807291017026_CityFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806161715343_UserImages.cs" />
-    <Compile Include="Migrations\201806161715343_UserImages.Designer.cs">
-      <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806171407400_UserImageExtensionAdded.cs" />
-    <Compile Include="Migrations\201806171407400_UserImageExtensionAdded.Designer.cs">
-      <DependentUpon>201806171407400_UserImageExtensionAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201807291018245_CityFix2.cs" />
+    <Compile Include="Migrations\201807291018245_CityFix2.Designer.cs">
+      <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserLike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,17 +73,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806021824334_InitialMigration.resx">
-      <DependentUpon>201806021824334_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807291012470_InitialCreate.resx">
+      <DependentUpon>201807291012470_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806031125525_UserActiceDeletedBannedFields.resx">
-      <DependentUpon>201806031125525_UserActiceDeletedBannedFields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807291017026_CityFix.resx">
+      <DependentUpon>201807291017026_CityFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806161715343_UserImages.resx">
-      <DependentUpon>201806161715343_UserImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806171407400_UserImageExtensionAdded.resx">
-      <DependentUpon>201806171407400_UserImageExtensionAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807291018245_CityFix2.resx">
+      <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

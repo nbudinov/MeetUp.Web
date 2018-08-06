@@ -3,7 +3,7 @@ namespace MeetUp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -41,11 +41,28 @@ namespace MeetUp.Data.Migrations
                         Birthday = c.DateTime(),
                         Sex = c.Int(nullable: false),
                         Description = c.String(),
+                        Active = c.Int(nullable: false),
+                        Deleted = c.Int(nullable: false),
+                        Banned = c.Int(nullable: false),
                         CityId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
                 .Index(t => t.CityId);
+            
+            CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Path = c.String(),
+                        Extension = c.String(),
+                        Size = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.UserLikes",
@@ -67,12 +84,15 @@ namespace MeetUp.Data.Migrations
             DropForeignKey("dbo.UserLikes", "OtherUserId", "dbo.Users");
             DropForeignKey("dbo.UserLikes", "UserId", "dbo.Users");
             DropForeignKey("dbo.Posts", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Images", "UserId", "dbo.Users");
             DropForeignKey("dbo.Users", "CityId", "dbo.Cities");
             DropIndex("dbo.UserLikes", new[] { "OtherUserId" });
             DropIndex("dbo.UserLikes", new[] { "UserId" });
+            DropIndex("dbo.Images", new[] { "UserId" });
             DropIndex("dbo.Users", new[] { "CityId" });
             DropIndex("dbo.Posts", new[] { "UserId" });
             DropTable("dbo.UserLikes");
+            DropTable("dbo.Images");
             DropTable("dbo.Users");
             DropTable("dbo.Posts");
             DropTable("dbo.Cities");

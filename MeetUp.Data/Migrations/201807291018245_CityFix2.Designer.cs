@@ -7,13 +7,13 @@ namespace MeetUp.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserImageExtensionAdded : IMigrationMetadata
+    public sealed partial class CityFix2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserImageExtensionAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CityFix2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806171407400_UserImageExtensionAdded"; }
+            get { return "201807291018245_CityFix2"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,7 +7,7 @@
     public static class HelperFunctions
     {
         public static readonly int saltLengthLimit = 16;
-
+        //r43UUohcv338tuX9CHnbyVg0um4PqnilHKQkDf4TKsqGkFXAOyt37PiMIeJuBG1Rd7hpPKx8stqhaZQcVzWz0UpyHfSyhD9mUiSYsozxWvc=
         public static bool CompareHashValue(string password, string username, string OldHASHValue, byte[] SALT)
         {
             string expectedHashString = Get_HASH_SHA512(password, username, SALT);
@@ -59,12 +59,12 @@
         }
 
 
-        public static byte[] Get_SALT()
+        public static byte[] GetSalt()
         {
-            return Get_SALT(saltLengthLimit);
+            return GetSalt(saltLengthLimit);
         }
 
-        public static byte[] Get_SALT(int maximumSaltLength)
+        public static byte[] GetSalt(int maximumSaltLength)
         {
             var salt = new byte[maximumSaltLength];
 

@@ -30,6 +30,8 @@ namespace MeetUp.Services
 
         bool SaveUserImage(int userId, string imagePath, int imageSize, string extension);
 
+        bool LikeUser(int userLiking, int userLiked);    
+
         bool Create(string email, string password, string fullname);
 
         bool Login(string email, string password);

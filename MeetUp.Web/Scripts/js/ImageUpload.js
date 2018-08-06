@@ -7,13 +7,8 @@
             slideMargin: 10,
         }
     );
-});
 
-$(".uploadPhoto").on("click", function (ev) {
-    $("#imageUploadForm").click();
-})
 
-$(document).ready(function () {
     $("#imageUploadForm").change(function () {
         var formData = new FormData();
         var totalFiles = document.getElementById("imageUploadForm").files.length;
@@ -42,3 +37,7 @@ $(document).ready(function () {
         });
     });
 });
+
+$(".uploadPhoto").on("click", function (ev) {
+    $("#imageUploadForm").click();
+})
