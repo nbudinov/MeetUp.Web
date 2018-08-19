@@ -44,6 +44,43 @@
                 .ToList();
         }
 
+        public IEnumerable<UserListingModel> WhoILike(int userId, int page = 1, int pageSize = 10)
+        {
+            var users = this.db
+                .Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .ThisUserLikes
+                .OrderByDescending(u => u.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(u => new UserListingModel
+                {
+                    Id = u.Id,
+                    Name = u.FullName,
+                    Description = u.Description,
+                    Banned = u.Banned,
+                    Sex = u.Sex,
+                    Images = u.Images.Select(i => new UserImageModel
+                    {
+                        Id = i.Id,
+                        Path = i.Path,
+                        Size = i.Size,
+                        Extension = i.Extension
+                    }),
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    UsersLikeThisUser = u.UsersLikeThisUser.ToList()
+                })
+                .ToList();
+
+            return users;
+        }
+
+        public IEnumerable<UserListingModel> WhoLikesMe(int userId, int page = 1, int pageSize = 10)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserViewModel GetUserById(int id)
         {
             //using (var db = new MeetUpDbContext())
@@ -125,6 +162,24 @@
         public int Count()
         {
             return db.Users.Count();
+        }
+
+        public int WhoILikeTotal(int userId)
+        {
+            return db.Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .ThisUserLikes
+                .Count();
+        }
+
+        public int WhoLikesMeTotal(int userId)
+        {
+            return db.Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .UsersLikeThisUser
+                .Count();
         }
 
         public bool SaveUserImage(int userId, string imagePath, int imageSize, string extension)
@@ -223,32 +278,28 @@
         {
             string realHashedPassword = string.Empty;
             byte[] salt = new byte[HelperFunctions.saltLengthLimit];
+          
+            var user = db.Users
+                .Where(u => u.Email == email && u.Active == 1 && u.Deleted == 0)
+                .FirstOrDefault();
 
-            //using (var db = new MeetUpDbContext())
-            //{
-                var user = db.Users
-                    .Where(u => u.Email == email && u.Active == 1 && u.Deleted == 0)
-                    .FirstOrDefault();
-
-                if (user == null)
-                {
-                    return false;
-                }
-
-                realHashedPassword = user.Password;
-                salt = user.Salt;
-
-                bool isLogin = HelperFunctions.CompareHashValue(password, email, realHashedPassword, salt);
-
-                if (isLogin)
-                {
-
-                    return true;
-                }
-
+            if (user == null)
+            {
                 return false;
             }
-        //}
+
+            realHashedPassword = user.Password;
+            salt = user.Salt;
+
+            bool isLogin = HelperFunctions.CompareHashValue(password, email, realHashedPassword, salt);
+
+            if (isLogin)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

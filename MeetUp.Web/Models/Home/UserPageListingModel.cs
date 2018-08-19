@@ -11,6 +11,8 @@
 
         public int TotalPages { get; set; }
 
+        public int TotalUsers { get; set; }
+
         public int PreviousPage => this.CurrentPage == 1
             ? 1
             : this.CurrentPage - 1;
@@ -22,5 +24,6 @@
         public string DefaultUserImagePath { get; set; } = "defaultProfilePhoto";
 
         public string DefaultUserImageExt { get; set; } = ".png";
+
     }
 }

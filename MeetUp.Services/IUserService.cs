@@ -11,6 +11,10 @@ namespace MeetUp.Services
     {
         IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0);
 
+        IEnumerable<UserListingModel> WhoILike(int userId, int page = 1, int pageSize = 10);
+
+        IEnumerable<UserListingModel> WhoLikesMe(int userId, int page = 1, int pageSize = 10);
+
         UserViewModel GetUserById(int id);
 
         UserServiceModel GetUserByEmail(string email);
@@ -27,6 +31,10 @@ namespace MeetUp.Services
 
 
         int Count();
+
+        int WhoILikeTotal(int userId);
+
+        int WhoLikesMeTotal(int userId);
 
         bool SaveUserImage(int userId, string imagePath, int imageSize, string extension);
 

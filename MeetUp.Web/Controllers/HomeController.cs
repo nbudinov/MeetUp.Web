@@ -10,7 +10,7 @@
 
     public class HomeController : Controller
     {
-        private const int PageSize = 2;
+        private const int PAGE_SIZE = 2;
 
         private readonly IUserService users;
 
@@ -29,13 +29,13 @@
                 userId = (int)Session["UserId"];
                 totalUsers -= 1;
             }
-            var Users = this.users.All(page, PageSize, userId);
+            //var Users = this.users.All(page, PageSize, userId);
 
             return View(new UserPageListingModel
             {
-                Users = this.users.All(page, PageSize, userId),
+                Users = this.users.All(page, PAGE_SIZE, userId),
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(totalUsers / (double)PageSize)
+                TotalPages = (int)Math.Ceiling(totalUsers / (double)PAGE_SIZE)
             });
         }
 
@@ -137,11 +137,25 @@
         //    return null;
         //}
 
-        public ActionResult WhoILike()
+        public ActionResult WhoILike(int page = 1)
         {
-            ViewBag.Message = "Your application description page.";
+            var userId = 0;
 
-            return View();
+            if (Session["UserId"] != null)
+            {
+                userId = (int)Session["UserId"];
+            }
+
+            var total = this.users.WhoILikeTotal(userId);
+            var users = this.users.WhoILike(userId, page, PAGE_SIZE);
+
+            return View(new UserPageListingModel
+            {
+                Users = users,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(total / (double)PAGE_SIZE),
+                TotalUsers = users.Count()
+            });
         }
 
         public ActionResult WhoLikesMe()
