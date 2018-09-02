@@ -78,7 +78,34 @@
 
         public IEnumerable<UserListingModel> WhoLikesMe(int userId, int page = 1, int pageSize = 10)
         {
-            throw new NotImplementedException();
+            var users = this.db
+                .Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .UsersLikeThisUser
+                .OrderByDescending(u => u.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(u => new UserListingModel
+                {
+                    Id = u.Id,
+                    Name = u.FullName,
+                    Description = u.Description,
+                    Banned = u.Banned,
+                    Sex = u.Sex,
+                    Images = u.Images.Select(i => new UserImageModel
+                    {
+                        Id = i.Id,
+                        Path = i.Path,
+                        Size = i.Size,
+                        Extension = i.Extension
+                    }),
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    UsersLikeThisUser = u.UsersLikeThisUser.ToList()
+                })
+                .ToList();
+
+            return users;
         }
 
         public UserViewModel GetUserById(int id)

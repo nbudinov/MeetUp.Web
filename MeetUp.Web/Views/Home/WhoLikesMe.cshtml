@@ -1,4 +1,4 @@
-﻿
+﻿@model  MeetUp.Web.Models.Home.UserPageListingModel
 @{
     ViewBag.Title = "Who Likes Me";
 }
@@ -7,3 +7,82 @@
     @ViewBag.Title
 </h1>
 
+
+<div class="row">
+    @if (Model.TotalUsers > 0)
+    {
+        foreach (var user in Model.Users)
+        {
+            var firstImageName = user.Images.Any() ? user.Images.First().Name : null;
+
+            var ext = (user.Images.Any() && user.Images.First().Extension != null) ?
+                user.Images.First().Extension : Model.DefaultUserImageExt;
+
+            <div id="userDiv_@user.Id" class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="/users/view/@user.Id">
+                        <img class="card-img-top" src="~/Files/GetImage/@firstImageName?ext=@ext" alt="" height="300" />
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">@user.Name</a>
+
+                            @*@if (Session["User"] != null)
+                                {
+                                    var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
+                                    var btnText = "Like";
+                                    if (isLiked != null)
+                                    {
+                                        btnText = "Dislike";
+                                    }
+                                    <button id="likeBtn_@user.Id" class="btn btn-dark likeBtn" data-user_id="@user.Id">@btnText</button>
+                                }*@
+                        </h4>
+                        <p class="card-text">
+                            @user.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div>You haven't liked any people yet.</div>
+    }
+
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination justify-content-center">
+        @{
+            var disablePrev = "";
+            var disableNext = "";
+
+            if (Model.CurrentPage == 1)
+            {
+                disablePrev = "disabled";
+            }
+            if (Model.CurrentPage == Model.TotalPages)
+            {
+                disableNext = "disabled";
+            }
+        }
+        <li class="page-item @disablePrev">
+            <a class="page-link" href="/?page=@Model.PreviousPage" tabindex="-1">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var active = "";
+            if (i == Model.CurrentPage)
+            {
+                active = "active";
+            }
+            <li class="page-item @active"><a class="page-link" href="/?page=@i">@i</a></li>
+        }
+        <li class="page-item @disableNext">
+            <a class="page-link" href="/?page=@Model.NextPage">Next</a>
+        </li>
+    </ul>
+}

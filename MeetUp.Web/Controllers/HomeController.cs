@@ -158,11 +158,25 @@
             });
         }
 
-        public ActionResult WhoLikesMe()
+        public ActionResult WhoLikesMe(int page = 1)
         {
-            ViewBag.Message = "Your contact page.";
+            var userId = 0;
 
-            return View();
+            if (Session["UserId"] != null)
+            {
+                userId = (int)Session["UserId"];
+            }
+
+            var total = this.users.WhoLikesMeTotal(userId);
+            var users = this.users.WhoLikesMe(userId, page, PAGE_SIZE);
+
+            return View(new UserPageListingModel
+            {
+                Users = users,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(total / (double)PAGE_SIZE),
+                TotalUsers = users.Count()
+            });
         }
     }
 }
