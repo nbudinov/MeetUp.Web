@@ -19,12 +19,15 @@
                 url: "/Home/LikeUser",
                 data: { id: likedUserIdInt }
             })
-                .done(function (resp) {
-                    if (resp.success)
-                    {
-                        var text = $("#likeBtn_" + likedUserIdInt).html() == "Like" ? "Dislike" : "Like";
-                        $("#likeBtn_" + likedUserIdInt).html(text);
-                    }
+            .done(function (resp) {
+                if (resp.success)
+                {
+                    var text = $("#likeBtn_" + likedUserIdInt).html() == "Like" ? "Dislike" : "Like";
+                    $("#likeBtn_" + likedUserIdInt).html(text);
+
+                    // Removing the user div in WhoILike and WhoLikesMe pages
+                    $("#userDiv_" + likedUserIdInt).remove();
+                }
             });
         })
     }

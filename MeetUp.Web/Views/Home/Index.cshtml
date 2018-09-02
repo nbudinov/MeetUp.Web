@@ -1,11 +1,11 @@
 ﻿@model  MeetUp.Web.Models.Home.UserPageListingModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <h1 class="my-4">
-    Page Heading
-    <small>Secondary Text</small>
+    @ViewBag.Title
+    @*<small>Secondary Text</small>*@
 </h1>
 <div class="row">
     @foreach (var user in Model.Users)
@@ -26,7 +26,6 @@
 
                         @if (Session["User"] != null)
                         {
-
                             var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
                             var btnText = "Like";
                             if (isLiked != null)

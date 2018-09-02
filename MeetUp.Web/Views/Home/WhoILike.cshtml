@@ -17,7 +17,7 @@
             var ext = (user.Images.Any() && user.Images.First().Extension != null) ?
                 user.Images.First().Extension : Model.DefaultUserImageExt;
 
-            <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div id="userDiv_@user.Id" class="col-lg-4 col-sm-6 portfolio-item">
                 <div class="card h-100">
                     <a href="/users/view/@user.Id">
                         <img class="card-img-top" src="~/Files/GetImage/@firstImageName?ext=@ext" alt="" height="300" />
@@ -28,7 +28,6 @@
 
                             @if (Session["User"] != null)
                             {
-
                                 var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
                                 var btnText = "Like";
                                 if (isLiked != null)
