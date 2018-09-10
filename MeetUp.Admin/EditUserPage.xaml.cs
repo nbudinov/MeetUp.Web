@@ -53,16 +53,40 @@ namespace MeetUp.Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var userServiceModel = new UserServiceModel();
-            // Todo add image
-            userService.UpdateUser(this.UserId, 
-                FullNameText.Text, 
-                DescriptionText.Text, 
-                null, 
-                DateTime.Parse(Birthday.Text), 
-                PasswordText.Text, 
-                Convert.ToInt32(ActiveCheckbox.IsChecked), 
-                null, null);
-            this.NavigationService.Navigate(new ListUsersPage());
+            var errorsWhileEdit = "";
+
+            if (Birthday.Text.Length == 0)
+            {
+                errorsWhileEdit = "Invalid Birthday \n";
+            }
+
+            if (FullNameText.Text.Length == 0)
+            {
+                errorsWhileEdit += "Invalid Full name \n";
+            }
+
+            if (EmailText.Text.Length == 0)
+            {
+                errorsWhileEdit += "Invalid Email address";
+            }
+
+            if (errorsWhileEdit != "")
+            {
+                MessageBox.Show("Please check the following fields: \n" + errorsWhileEdit);
+            }
+            else
+            {
+                // Todo add image
+                userService.UpdateUser(this.UserId,
+                    FullNameText.Text,
+                    DescriptionText.Text,
+                    null,
+                    DateTime.Parse(Birthday.Text),
+                    PasswordText.Text,
+                    Convert.ToInt32(ActiveCheckbox.IsChecked),
+                    null, null);
+                this.NavigationService.Navigate(new ListUsersPage());
+            }
         }
 
         private void Button_Click_Ban(object sender, RoutedEventArgs e)
@@ -78,5 +102,7 @@ namespace MeetUp.Admin
             userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 0);
             this.NavigationService.Navigate(new ListUsersPage());
         }
+
+   
     }
 }
