@@ -276,29 +276,37 @@
         {
             //using (var db = new MeetUpDbContext())
             //{
-                var mailExists = db.Users.Any(u => u.Email == email && u.Deleted == 0);
+            var mailExists = db.Users.Any(u => u.Email == email && u.Deleted == 0);
 
-                if (mailExists)
-                {
-                    return false;
-                }
+            if (mailExists)
+            {
+                return false;
+            }
 
-                var salt = HelperFunctions.GetSalt();
-                var hashedPass = HelperFunctions.Get_HASH_SHA512(password, email, salt);
+            var salt = HelperFunctions.GetSalt();
+            var hashedPass = HelperFunctions.Get_HASH_SHA512(password, email, salt);
 
-                var user = new User
-                {
-                    Email = email,
-                    Password = hashedPass,
-                    Salt = salt,
-                    FullName = fullname
-                };
+            var role = UserRole.User;
 
-                db.Users.Add(user);
-                db.SaveChanges();
+            if(this.Count() == 0)
+            {
+                role = UserRole.Admin;        
+            }
 
-                return true;
-            //}
+            var user = new User
+            {
+                Email = email,
+                Password = hashedPass,
+                Salt = salt,
+                FullName = fullname,
+                Role = role
+            };
+
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return true;
+        //}
         }
 
         public bool Login(string email, string password)

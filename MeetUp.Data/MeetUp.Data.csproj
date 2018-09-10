@@ -60,12 +60,17 @@
     <Compile Include="Migrations\201807291018245_CityFix2.Designer.cs">
       <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809101707335_UserRoles.cs" />
+    <Compile Include="Migrations\201809101707335_UserRoles.Designer.cs">
+      <DependentUpon>201809101707335_UserRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserLike.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807291018245_CityFix2.resx">
       <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809101707335_UserRoles.resx">
+      <DependentUpon>201809101707335_UserRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

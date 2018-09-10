@@ -21,6 +21,8 @@
         [MinLength(10)]
         public byte[] Salt { get; set; }
 
+        public UserRole Role { get; set; }
+
         [MinLength(3)]
         [MaxLength(100)]
         public string FullName { get; set; }
