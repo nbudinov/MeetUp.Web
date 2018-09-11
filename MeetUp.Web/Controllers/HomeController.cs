@@ -7,6 +7,8 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using MeetUp.Services.Models.Users;
+    using MeetUp.Web.Helpers;
 
     public class HomeController : Controller
     {
@@ -51,7 +53,32 @@
 
             var user = users.GetUserById(currUserId);
 
+            ViewBag.DropDownList = EnumHelper.SelectListFor(user.Sex);
+
+
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult MyProfile(UserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (Session["UserId"] == null)
+            {
+                return Redirect("/");
+            }
+
+            var currUserId = (int)Session["UserId"];
+
+            this.users.UpdateUser(currUserId, model.FullName, model.Description, null, model.Birthday, null, null, null, null, null, model.Sex);
+
+            TempData["Success"] = "Successfully edited your profile!";
+
+            return Redirect("/MyProfile");
         }
 
         [HttpPost]

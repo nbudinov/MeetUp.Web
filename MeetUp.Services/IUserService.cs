@@ -1,4 +1,5 @@
-﻿using MeetUp.Services.Models.Users;
+﻿using MeetUp.Data.Models;
+using MeetUp.Services.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,9 @@ namespace MeetUp.Services
             string password = null,
             int? active = null,
             int? deleted = null,
-            int? banned = null);
+            int? banned = null,
+            DateTime? lastOnline = null,
+            UserSex? sex = null);
 
 
         int Count();

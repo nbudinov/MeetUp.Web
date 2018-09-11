@@ -1,5 +1,6 @@
 ﻿@model MeetUp.Services.Models.Users.UserViewModel
 
+
 @{
     ViewBag.Title = "My Profile";
 }
@@ -8,71 +9,287 @@
     @ViewBag.Title
 </h1>
 
-<div class="row">
-    @*<div class="col-lg-3">
-            <h1 class="my-4">Shop Name</h1>
-            <div class="list-group">
-                <a href="#" class="list-group-item active">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
-            </div>
-        </div>*@
-    <!-- /.col-lg-3 -->
-    <div class="col-lg-12">
-        <div class="card mt-4">
-            <ul id="lightSlider" class="lightslider">
-                @foreach (var img in Model.Images)
-                {
-                    <li class="">
-                        <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
-                        <span></span>
-                    </li>
-                }
-                <li class="">
-                    <input type="file" id="imageUploadForm" name="image" multiple="multiple" style="display:none" />
 
-                    <img src="~/Files/GetImage/uploadPhoto" class="uploadPhoto" width="300">
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-md-12">
+
+        <ul id="lightSlider" class="lightslider">
+            @foreach (var img in Model.Images)
+            {
+                <li class="">
+                    <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
                     <span></span>
                 </li>
+            }
+            <li class="">
+                <input type="file" id="imageUploadForm" name="image" multiple="multiple" style="display:none" />
+
+                <img src="~/Files/GetImage/uploadPhoto" class="uploadPhoto" width="300">
+                <span></span>
+            </li>
+
+        </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Joined: </strong></span>@Model.CreateTime</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Last online: </strong></span> @Model.LastOnline</li>
+                @*<li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span> Joseph Doe</li>*@
 
             </ul>
 
-            @*@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-            <input type="file" name="files" multiple />
-            <button class="btn btn-default">Upload</button>
-            }*@
+            @*<div class="panel panel-default">
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+            </div>*@
 
-            @*<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">*@
-            <div class="card-body">
-                <h3 class="card-title">@Model.FullName</h3>
-                <h4>@Model.City</h4>
-                <p class="">
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>People you liked: </strong></span> @Model.PeopleYouLikedCount</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>People liked you: </strong></span> @Model.PeopleLikedYouCount</li>
+           @*     <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>*@
+            </ul>
 
-                </p>
-                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                4.0 stars
-            </div>
+            @*<div class="panel panel-default">
+                <div class="panel-heading">Social Media</div>
+                <div class="panel-body">
+                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+                </div>
+            </div>*@
+
         </div>
-        <!-- /.card -->
-        <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-                Product Reviews
+        <!--/col-3-->
+        <div class="col-sm-9">
+
+            @*<ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                <li><a href="#messages" data-toggle="tab">Messages</a></li>
+                <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            </ul>*@
+
+            <div class="tab-content">
+                @*<div class="tab-pane " id="home">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Label 1</th>
+                                    <th>Label 2</th>
+                                    <th>Label 3</th>
+                                    <th>Label </th>
+                                    <th>Label </th>
+                                    <th>Label </th>
+                                </tr>
+                            </thead>
+                            <tbody id="items">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4 text-center">
+                                <ul class="pagination" id="myPager"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/table-resp-->
+
+                    <hr>
+
+                </div>
+                <!--/tab-pane-->
+                <div class="tab-pane" id="messages">
+
+                    <h2></h2>
+
+                    <ul class="list-group">
+                        <li class="list-group-item text-muted">Inbox</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                        <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+                    </ul>
+
+                </div>
+                <!--/tab-pane-->*@
+                <div class="tab-pane active" id="settings">
+
+                    <hr>
+                    <form class="form" action="/Home/myprofile" method="post" id="registrationForm">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="fullname">
+                                    <h4>Full name</h4>
+                                </label>
+                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control"})
+                                @*<input type="text" class="form-control" name="full_name" id="full_name" placeholder="full name" title="enter your full name if any.">*@
+                            </div>
+                            <div class="col-md-6">
+                                <label for="birthday">
+                                    <h4>Birthday</h4>
+                                </label>
+                                @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control", type = "date" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                           
+                            <div class="col-md-6">
+                                <label for="sex">
+                                    <h4>Sex</h4>
+                                </label>
+                                @Html.DropDownListFor(m => m.Sex, ViewBag.DropDownList as SelectList, new { @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="fullname">
+                                    <h4>Description</h4>
+                                </label>
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                                @*<input type="text" class="form-control" name="full_name" id="full_name" placeholder="full name" title="enter your full name if any.">*@
+                            </div>
+
+                        </div>
+
+                        @*<div class="form-group">
+                            <div class="col-md-6">
+                                <label for="mobile">
+                                    <h4>Mobile</h4>
+                                </label>
+                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <label for="email">
+                                    <h4>Email</h4>
+                                </label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <label for="email">
+                                    <h4>Location</h4>
+                                </label>
+                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <label for="password">
+                                    <h4>Password</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <label for="password2">
+                                    <h4>Verify</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                            </div>
+                        </div>*@
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-            <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <a href="#" class="btn btn-success">Leave a Review</a>
-            </div>
+            <!--/tab-pane-->
         </div>
-        <!-- /.card -->
+        <!--/tab-content-->
+
     </div>
-    <!-- /.col-lg-9 -->
+    <!--/col-9-->
 </div>
+<!--/row-->
+@*<div class="row">
+
+        <!-- /.col-lg-3 -->
+        <div class="col-lg-12">
+            <div class="card mt-4">
+                <ul id="lightSlider" class="lightslider">
+                    @foreach (var img in Model.Images)
+                    {
+                        <li class="">
+                            <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
+                            <span></span>
+                        </li>
+                    }
+                    <li class="">
+                        <input type="file" id="imageUploadForm" name="image" multiple="multiple" style="display:none" />
+
+                        <img src="~/Files/GetImage/uploadPhoto" class="uploadPhoto" width="300">
+                        <span></span>
+                    </li>
+
+                </ul>
+
+
+                <div class="card-body">
+                    <h3 class="card-title">@Model.FullName</h3>
+                    <h4>@Model.City</h4>
+                    <p class="">
+
+                    </p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                </div>
+            </div>
+            <!-- /.card -->
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    Product Reviews
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <a href="#" class="btn btn-success">Leave a Review</a>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-lg-9 -->
+    </div>*@

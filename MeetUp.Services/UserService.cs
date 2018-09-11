@@ -15,7 +15,7 @@
         {
             this.db = db;
         }
-        
+
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {
             return this.db
@@ -112,28 +112,32 @@
         {
             //using (var db = new MeetUpDbContext())
             //{
-                return db.Users
-                    .Where(u => u.Id == id)
-                    .Select(u => new UserViewModel
+            return db.Users
+                .Where(u => u.Id == id)
+                .Select(u => new UserViewModel
+                {
+                    Id = u.Id,
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    City = u.City.Name,
+                    Birthday = u.Birthday,
+                    Description = u.Description,
+                    Sex = u.Sex,
+                    Active = u.Active,
+                    Banned = u.Banned,
+                    Images = u.Images.Select(i => new UserImageModel
                     {
-                        Id = u.Id,
-                        FullName = u.FullName,
-                        Email = u.Email,
-                        City = u.City.Name,
-                        Birthday = u.Birthday,
-                        Description = u.Description,
-                        Sex = u.Sex,
-                        Active = u.Active,
-                        Banned = u.Banned,
-                        Images = u.Images.Select(i => new UserImageModel
-                        {
-                            Id = i.Id,
-                            Path = i.Path,
-                            Size = i.Size,
-                            Extension = i.Extension
-                        })
-                    })
-                    .FirstOrDefault();
+                        Id = i.Id,
+                        Path = i.Path,
+                        Size = i.Size,
+                        Extension = i.Extension
+                    }),
+                    PeopleLikedYouCount = u.UsersLikeThisUser.Count,
+                    PeopleYouLikedCount = u.ThisUserLikes.Count,
+                    CreateTime = u.CreateTime,
+                    LastOnline = u.LastOnline
+                })
+                .FirstOrDefault();
             //}
         }
 
@@ -150,39 +154,43 @@
                 .FirstOrDefault();
         }
 
-        public void UpdateUser(int id, 
-            string fullname = null, 
-            string description = null, 
-            int? cityId = null, 
-            DateTime? birthday = null, 
+        public void UpdateUser(int id,
+            string fullname = null,
+            string description = null,
+            int? cityId = null,
+            DateTime? birthday = null,
             string password = null,
             int? active = null,
-            int? deleted = null, 
-            int? banned = null)
+            int? deleted = null,
+            int? banned = null,
+            DateTime? lastOnline = null,
+            UserSex? sex = null)
         {
             //using (var db = new MeetUpDbContext())
             //{
-                var dbUser = db.Users
-                    .Where(u => u.Id == id)
-                    .FirstOrDefault();
+            var dbUser = db.Users
+                .Where(u => u.Id == id)
+                .FirstOrDefault();
 
-                if (password != null)
-                {
-                    var salt = dbUser.Salt;
-                    var hashedPass = HelperFunctions.Get_HASH_SHA512(password, dbUser.Email, salt);
+            if (password != null)
+            {
+                var salt = dbUser.Salt;
+                var hashedPass = HelperFunctions.Get_HASH_SHA512(password, dbUser.Email, salt);
 
-                    dbUser.Password = hashedPass;
-                }
-                
-                dbUser.FullName = fullname ?? dbUser.FullName;
-                dbUser.Description = description ?? dbUser.Description;
-                dbUser.CityId = cityId ?? dbUser.CityId;
-                dbUser.Birthday = birthday ?? dbUser.Birthday;
-                dbUser.Active = active ?? dbUser.Active;
-                dbUser.Deleted = deleted ?? dbUser.Deleted;
-                dbUser.Banned = banned ?? dbUser.Banned;
+                dbUser.Password = hashedPass;
+            }
 
-                db.SaveChanges();
+            dbUser.FullName = fullname ?? dbUser.FullName;
+            dbUser.Description = description ?? dbUser.Description;
+            dbUser.CityId = cityId ?? dbUser.CityId;
+            dbUser.Birthday = birthday ?? dbUser.Birthday;
+            dbUser.Active = active ?? dbUser.Active;
+            dbUser.Deleted = deleted ?? dbUser.Deleted;
+            dbUser.Banned = banned ?? dbUser.Banned;
+            dbUser.LastOnline = lastOnline ?? dbUser.LastOnline;
+            dbUser.Sex = sex ?? dbUser.Sex;
+
+            db.SaveChanges();
             //}
         }
 
@@ -217,7 +225,7 @@
                     .Where(u => u.Id == userId)
                     .FirstOrDefault();
 
-                if(user == null)
+                if (user == null)
                 {
                     return false;
                 }
@@ -226,7 +234,7 @@
                 {
                     Path = imagePath,
                     UserId = userId,
-                    Size = imageSize, 
+                    Size = imageSize,
                     Extension = extension
                 };
 
@@ -241,7 +249,7 @@
         {
             var likingUser = this.db
                 .Users
-                .Where(u => u.Id == userLikingId)             
+                .Where(u => u.Id == userLikingId)
                 .FirstOrDefault();
 
             var likedUser = this.db
@@ -288,9 +296,9 @@
 
             var role = UserRole.User;
 
-            if(this.Count() == 0)
+            if (this.Count() == 0)
             {
-                role = UserRole.Admin;        
+                role = UserRole.Admin;
             }
 
             var user = new User
@@ -299,21 +307,23 @@
                 Password = hashedPass,
                 Salt = salt,
                 FullName = fullname,
-                Role = role
+                Role = role,
+                CreateTime = DateTime.Now,
+                LastOnline = DateTime.Now
             };
 
             db.Users.Add(user);
             db.SaveChanges();
 
             return true;
-        //}
+            //}
         }
 
         public bool Login(string email, string password)
         {
             string realHashedPassword = string.Empty;
             byte[] salt = new byte[HelperFunctions.saltLengthLimit];
-          
+
             var user = db.Users
                 .Where(u => u.Email == email && u.Active == 1 && u.Deleted == 0)
                 .FirstOrDefault();
@@ -330,6 +340,8 @@
 
             if (isLogin)
             {
+                this.UpdateUser(user.Id, null, null, null, null, null, null, null, null, DateTime.Now);
+
                 return true;
             }
 

@@ -29,7 +29,11 @@
 
         public DateTime? Birthday { get; set; }
 
-        public int Sex { get; set; }
+        public DateTime? CreateTime { get; set; }
+
+        public DateTime? LastOnline { get; set; }
+
+        public UserSex Sex { get; set; }
 
         public string Description { get; set; }
 
