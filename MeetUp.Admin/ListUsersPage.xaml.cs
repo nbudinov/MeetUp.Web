@@ -14,8 +14,8 @@ namespace MeetUp.Admin
     public partial class ListUsersPage : Page
     {
         private readonly UserService users;
-
         public IEnumerable<UserListingModel> allUsers { get; set; }
+        public IEnumerable<UserListingModel> listedUsers { get; set; }
         //public ObservableCollection<User> usersFromDb = new ObservableCollection<User>();
 
 
@@ -28,7 +28,6 @@ namespace MeetUp.Admin
             allUsers = this.users.All();
             this.DataContext = this; //data binding 
 
-
             listView.ItemsSource = allUsers;
         }
 
@@ -36,13 +35,16 @@ namespace MeetUp.Admin
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            User user = b.CommandParameter as User;
-            //MessageBox.Show(user.Id.ToString());
+            var user = b.CommandParameter as UserListingModel;
 
             if (b != null)
             {
+                // Update deleted
                 this.users.UpdateUser(user.Id, null, null, null, null, null, null, 1, null);
-                ((ObservableCollection<User>)listView.ItemsSource).Remove(user);
+
+                // Get and Set new users
+                allUsers = this.users.All();
+                listView.ItemsSource = allUsers;
             }
         }
 
@@ -68,5 +70,9 @@ namespace MeetUp.Admin
 
         }
 
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

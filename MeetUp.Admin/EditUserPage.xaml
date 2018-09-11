@@ -26,7 +26,10 @@
         <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,319,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,47,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="49,47,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
+        <Button Content="Upload image" HorizontalAlignment="Left" Margin="498,387,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_1"/>
 
+        <Image Margin="382,90,100,130" Name="imgPhoto"
+        Stretch="Fill" />
 
     </Grid>
 

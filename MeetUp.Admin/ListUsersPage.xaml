@@ -13,8 +13,8 @@
 
         <ListView x:Name="listView">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Full Name" Width="100" DisplayMemberBinding="{Binding FullName}"/>
+                <GridView x:Name="gridView">
+                    <GridViewColumn Header="Full Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Sex" Width="50" DisplayMemberBinding="{Binding Sex}"/>
                     <GridViewColumn Header="Banned" Width="50" DisplayMemberBinding="{Binding Banned}"/>
                     

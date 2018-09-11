@@ -334,7 +334,7 @@
             }
 
             realHashedPassword = user.Password;
-            salt = user.Salt;
+            salt = user.Salt;   
 
             bool isLogin = HelperFunctions.CompareHashValue(password, email, realHashedPassword, salt);
 

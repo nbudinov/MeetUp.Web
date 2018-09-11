@@ -15,6 +15,10 @@
 
         public int Banned { get; set; }
 
+        public int Deleted { get; set; } = 0;
+
+
+
         public IEnumerable<UserImageModel> Images { get; set; } = new List<UserImageModel>();
     }
 }
