@@ -15,7 +15,7 @@
             {
                 return db
                     .Users
-                    .Where(u => u.Id != withoutUserId)
+                    .Where(u => (u.Id != withoutUserId && u.Deleted == 0))
                     .OrderByDescending(u => u.Id)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
