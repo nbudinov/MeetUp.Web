@@ -35,10 +35,7 @@ namespace MeetUp.Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var errorsWhileEdit = "";
-
-            // TODO
-            this.NavigationService.Navigate(new ListUsersPage());
-
+            
             if (EmailText.Text.Length == 0)
             {
                 errorsWhileEdit = "Invalid Email \n";

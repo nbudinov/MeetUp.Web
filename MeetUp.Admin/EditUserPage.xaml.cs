@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.IO;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MeetUp.Admin
 {
@@ -32,7 +34,7 @@ namespace MeetUp.Admin
             EmailText.IsEnabled = false;
             FullNameText.Text = user.FullName;
             DescriptionText.Text = user.Description;
-
+            imgPhoto.Source = new BitmapImage(new Uri(GetImagePath(user.Images)));
             if (user.Birthday != null)
             {
                 DateTime brth = (DateTime)user.Birthday;
@@ -50,6 +52,14 @@ namespace MeetUp.Admin
                 UnbanUserButton.Visibility = Visibility.Hidden; 
             }
             
+        }
+
+        public string GetImagePath(IEnumerable<UserImageModel> images)
+        {
+            if (images.Count() == 0) {
+                return "C:\\Users\\dekal\\Downloads\\dummy_user.png";
+            }
+            return images.First().Path;
         }
 
         // Edit
@@ -79,7 +89,7 @@ namespace MeetUp.Admin
                     DescriptionText.Text,
                     null,
                     DateTime.Parse(Birthday.Text),
-                    PasswordText.Text,
+                    PasswordText.Password.ToString(),
                     Convert.ToInt32(ActiveCheckbox.IsChecked),
                     null, null);
                 this.NavigationService.Navigate(new ListUsersPage());

@@ -12,16 +12,27 @@
     <Grid>
 
         <TextBox Text="{Binding Path=UserId}"/>
-        <Button Content="Create" HorizontalAlignment="Left" Margin="50,332,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-        <TextBox HorizontalAlignment="Left" Name="PasswordNameText" Height="23" Margin="129,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="Birthday" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
+        <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,57,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
+        
         <Label Content="Create User" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" Height="32" Width="199"/>
+
         <Label Content="Email" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top" Height="23" Width="49"/>
+        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
         <Label Content="Full Name" HorizontalAlignment="Left" Margin="50,167,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+
         <Label Content="Password" HorizontalAlignment="Left" Margin="50,218,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="50,274,0,0" VerticalAlignment="Top" Height="24" Width="74"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,218,0,0" VerticalAlignment="Top" Width="120" Name="PasswordNameText" Height="23" />
+
+        <Label Content="Description" HorizontalAlignment="Left" Margin="50,274,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
         <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Button Content="Create" HorizontalAlignment="Left" Margin="50,332,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
+
+
 
     </Grid>
 

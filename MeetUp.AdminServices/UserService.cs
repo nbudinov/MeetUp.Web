@@ -155,7 +155,7 @@
             }
         }
 
-        public bool Create(string email, string password, string fullname)
+        public bool Create(string email, string password, string fullname, string description, DateTime? birthday = null)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -176,6 +176,8 @@
                     Salt = salt,
                     FullName = fullname,
                     CityId = 1,
+                    Description = description,
+                    Birthday = birthday,
                     Sex = 1
                 };
 
@@ -194,7 +196,7 @@
             using (var db = new MeetUpDbContext())
             {
                 var user = db.Users
-                    .Where(u => u.Email == email)
+                    .Where(u => u.Email == email && u.Deleted == 0 && u.Banned == 0)
                     .FirstOrDefault();
 
                 if (user == null)
@@ -209,7 +211,6 @@
 
                 if (isLogin)
                 {
-
                     return true;
                 }
 

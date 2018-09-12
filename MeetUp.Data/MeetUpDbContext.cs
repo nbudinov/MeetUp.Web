@@ -9,7 +9,6 @@
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Post> Posts { get; set; }
-
         //public DbSet<UserLike> UserLikes { get; set; }
 
         public MeetUpDbContext() 
