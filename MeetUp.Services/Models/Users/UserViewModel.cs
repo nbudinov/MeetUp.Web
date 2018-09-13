@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MeetUp.Services.Models.Users
+﻿namespace MeetUp.Services.Models.Users
 {
+    using System;
+    using System.Collections.Generic;
+    using MeetUp.Data.Models;
+
     public class UserViewModel
     {
         public int Id { get; set; }
@@ -20,12 +18,20 @@ namespace MeetUp.Services.Models.Users
 
         public DateTime? Birthday { get; set; }
 
-        public int Sex { get; set; }
+        public DateTime? CreateTime { get; set; }
+
+        public DateTime? LastOnline { get; set; }
+
+        public UserSex Sex { get; set; }
 
         public int Banned { get; set; }
 
         public int Active { get; set; }
 
         public IEnumerable<UserImageModel> Images { get; set; } = new List<UserImageModel>();
+
+        public int PeopleYouLikedCount { get; set; }
+
+        public int PeopleLikedYouCount { get; set; }
     }
 }

@@ -169,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Models\Home\UserPageListingModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -252,6 +253,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MeetUp.Data\MeetUp.Data.csproj">
+      <Project>{794E28D2-8A61-42F1-8706-A3519F6C4792}</Project>
+      <Name>MeetUp.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeetUp.Services\MeetUp.Services.csproj">
       <Project>{aba5f999-88d6-4250-bd93-e726647710ee}</Project>
       <Name>MeetUp.Services</Name>

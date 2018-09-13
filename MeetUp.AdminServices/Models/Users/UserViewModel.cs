@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MeetUp.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace MeetUp.AdminServices.Models.Users
 
         public DateTime? Birthday { get; set; }
 
-        public int Sex { get; set; }
+        public UserSex Sex { get; set; }
 
         public int Banned { get; set; }
 
