@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201809111943092_UserFields.Designer.cs">
       <DependentUpon>201809111943092_UserFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809151110000_UserImageDeletedField.cs" />
+    <Compile Include="Migrations\201809151110000_UserImageDeletedField.Designer.cs">
+      <DependentUpon>201809151110000_UserImageDeletedField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Image.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809111943092_UserFields.resx">
       <DependentUpon>201809111943092_UserFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151110000_UserImageDeletedField.resx">
+      <DependentUpon>201809151110000_UserImageDeletedField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

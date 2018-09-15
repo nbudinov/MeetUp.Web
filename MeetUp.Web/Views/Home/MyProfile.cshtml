@@ -19,8 +19,11 @@
             @foreach (var img in Model.Images)
             {
                 <li class="">
-                    <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
-                    <span></span>
+                    <a href="~/Files/GetImage/@img.Name?ext=@img.Extension">
+                        <img src="~/Files/GetImage/@img.Name?ext=@img.Extension" width="400">
+                        <span></span>
+                    </a>
+                    <span class="deleteItem" data-id="@img.Id">Delete</span>
                 </li>
             }
             <li class="">
@@ -150,7 +153,7 @@
                                 <label for="birthday">
                                     <h4>Birthday</h4>
                                 </label>
-                                @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control", type = "date" })
+                                @Html.TextBoxFor(m => m.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                             </div>
                         </div>
 

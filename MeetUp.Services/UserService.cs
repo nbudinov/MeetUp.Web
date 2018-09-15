@@ -125,7 +125,7 @@
                     Sex = u.Sex,
                     Active = u.Active,
                     Banned = u.Banned,
-                    Images = u.Images.Select(i => new UserImageModel
+                    Images = u.Images.Where(i => i.Deleted == false).Select(i => new UserImageModel
                     {
                         Id = i.Id,
                         Path = i.Path,
@@ -244,6 +244,41 @@
                 return true;
             }
         }
+
+        public Image GetUserImageById(int userId, int imageId)
+        {
+            var user = db.Users
+                   .Where(u => u.Id == userId)
+                   .FirstOrDefault();
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.Images.Where(i => i.Id == imageId).FirstOrDefault();
+        }
+
+        public bool DeleteUserImage(int userId, int imageId)
+        {
+            var user = db.Users
+                   .Where(u => u.Id == userId)
+                   .FirstOrDefault();
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            var image = user.Images.Where(i => i.Id == imageId).FirstOrDefault();
+
+            image.Deleted = true;
+
+            db.SaveChanges();
+
+            return true;
+        }
+
 
         public bool LikeUser(int userLikingId, int userLikedId)
         {
