@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Web;
     using System.Web.Mvc;
 
@@ -93,6 +94,38 @@
                 this.users.SaveUserImage(userId, path, file.ContentLength, ext);
             }
 
+        }
+
+        [HttpPost]
+        public JsonResult Delete(string id)
+        {
+            var userId = (int)Session["UserId"];
+
+            if (String.IsNullOrEmpty(id))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { Result = "Error" });
+            }
+            try
+            {
+                var imgIdInt = Convert.ToInt32(id);
+
+                var image = this.users.GetUserImageById(userId, imgIdInt);
+
+                if (System.IO.File.Exists(image.Path))
+                {
+                    System.IO.File.Delete(image.Path);
+                }
+
+                this.users.DeleteUserImage(userId, imgIdInt);
+
+               
+                return Json(new { Result = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
     }
 }
