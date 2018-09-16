@@ -17,12 +17,18 @@
             return View();
         }
 
-
         public ActionResult View(int id)
         {
             var user = this.users.GetUserById(id);
 
-            return View(user);
+            if(user == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                return View(user);
+            }
         }
     }
 }

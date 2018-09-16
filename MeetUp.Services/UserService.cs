@@ -16,11 +16,18 @@
             this.db = db;
         }
 
-        public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
+        public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0, int ageFrom = 10, 
+            int ageTo = 120, int sex = 0)
         {
             return this.db
                 .Users
-                .Where(u => u.Id != withoutUserId)
+                .Where(
+                    u => u.Id != withoutUserId &&
+                    sex != 0 ? u.Sex == (UserSex)sex : true &&
+                    (((DateTime.Now.Year - u.Birthday.Value.Year >= ageFrom)
+                    && (DateTime.Now.Year - u.Birthday.Value.Year <= ageTo))
+                    || u.Birthday.Value == null)
+                    )
                 .OrderByDescending(u => u.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -31,7 +38,8 @@
                     Description = u.Description,
                     Banned = u.Banned,
                     Sex = u.Sex,
-                    Images = u.Images.Select(i => new UserImageModel
+                    Birthday = u.Birthday,
+                    Images = u.Images.Where(i => i.Deleted == false).Select(i => new UserImageModel
                     {
                         Id = i.Id,
                         Path = i.Path,

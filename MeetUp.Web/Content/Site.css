@@ -46,6 +46,10 @@ body {
     margin-bottom: 30px;
 }
 
+.container {
+    margin-left: 200px;
+}
+
 
 /*#album {
     overflow: auto;

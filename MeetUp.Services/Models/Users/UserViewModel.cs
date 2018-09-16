@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using MeetUp.Data.Models;
 
     public class UserViewModel
@@ -10,8 +11,12 @@
 
         public string Email { get; set; }
 
+        [MinLength(3)]
+        [MaxLength(70)]
         public string FullName { get; set; }
 
+        [MinLength(10, ErrorMessage = "Description min length is 10 chars")]
+        [MaxLength(255, ErrorMessage = "Description min length is 255 chars")]
         public string Description { get; set; }
 
         public string City { get; set; }

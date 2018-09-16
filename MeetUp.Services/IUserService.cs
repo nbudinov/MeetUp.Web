@@ -10,7 +10,7 @@ namespace MeetUp.Services
 {
     public interface IUserService
     {
-        IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0);
+        IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0, int ageFrom = 10, int ageTo = 120, int sex = 0);
 
         IEnumerable<UserListingModel> WhoILike(int userId, int page = 1, int pageSize = 10);
 

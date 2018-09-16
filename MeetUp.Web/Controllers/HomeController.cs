@@ -12,7 +12,7 @@
 
     public class HomeController : Controller
     {
-        private const int PAGE_SIZE = 2;
+        private const int PAGE_SIZE = 6;
 
         private readonly IUserService users;
 
@@ -21,7 +21,7 @@
             this.users = users;
         }
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, int ageFrom = 0, int ageTo = 120, int sex = 0)
         {
             var userId = 0;
             var totalUsers = this.users.Count();
@@ -31,11 +31,24 @@
                 userId = (int)Session["UserId"];
                 totalUsers -= 1;
             }
-            //var Users = this.users.All(page, PageSize, userId);
+
+            if(ageFrom != 0)
+            {
+                ViewBag.AgeFrom = ageFrom;
+            }
+
+            if(ageTo != 120)
+            {
+                ViewBag.AgeTo = ageTo;
+            }
+
+            ViewBag.Sex = sex;
+
+            var Users = this.users.All(page, PAGE_SIZE, userId, ageFrom, ageTo, sex);
 
             return View(new UserPageListingModel
             {
-                Users = this.users.All(page, PAGE_SIZE, userId),
+                Users = Users,
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(totalUsers / (double)PAGE_SIZE)
             });
@@ -55,15 +68,17 @@
 
             ViewBag.DropDownList = EnumHelper.SelectListFor(user.Sex);
 
-
             return View(user);
         }
 
+
         [HttpPost]
+        [Route("myprofile")]
         public ActionResult MyProfile(UserViewModel model)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.DropDownList = EnumHelper.SelectListFor(model.Sex);
                 return View(model);
             }
 
