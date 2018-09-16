@@ -48,29 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeetUpDbContext.cs" />
-    <Compile Include="Migrations\201807291012470_InitialCreate.cs" />
-    <Compile Include="Migrations\201807291012470_InitialCreate.Designer.cs">
-      <DependentUpon>201807291012470_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807291017026_CityFix.cs" />
-    <Compile Include="Migrations\201807291017026_CityFix.Designer.cs">
-      <DependentUpon>201807291017026_CityFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807291018245_CityFix2.cs" />
-    <Compile Include="Migrations\201807291018245_CityFix2.Designer.cs">
-      <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809101707335_UserRoles.cs" />
-    <Compile Include="Migrations\201809101707335_UserRoles.Designer.cs">
-      <DependentUpon>201809101707335_UserRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809111943092_UserFields.cs" />
-    <Compile Include="Migrations\201809111943092_UserFields.Designer.cs">
-      <DependentUpon>201809111943092_UserFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809151110000_UserImageDeletedField.cs" />
-    <Compile Include="Migrations\201809151110000_UserImageDeletedField.Designer.cs">
-      <DependentUpon>201809151110000_UserImageDeletedField.cs</DependentUpon>
+    <Compile Include="Migrations\201809161327424_InitialMigration.cs" />
+    <Compile Include="Migrations\201809161327424_InitialMigration.Designer.cs">
+      <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -87,23 +67,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807291012470_InitialCreate.resx">
-      <DependentUpon>201807291012470_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807291017026_CityFix.resx">
-      <DependentUpon>201807291017026_CityFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807291018245_CityFix2.resx">
-      <DependentUpon>201807291018245_CityFix2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809101707335_UserRoles.resx">
-      <DependentUpon>201809101707335_UserRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809111943092_UserFields.resx">
-      <DependentUpon>201809111943092_UserFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809151110000_UserImageDeletedField.resx">
-      <DependentUpon>201809151110000_UserImageDeletedField.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809161327424_InitialMigration.resx">
+      <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

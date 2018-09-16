@@ -3,7 +3,7 @@ namespace MeetUp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -37,17 +37,20 @@ namespace MeetUp.Data.Migrations
                         Email = c.String(maxLength: 50),
                         Password = c.String(maxLength: 512),
                         Salt = c.Binary(),
+                        Role = c.Int(nullable: false),
                         FullName = c.String(maxLength: 100),
                         Birthday = c.DateTime(),
+                        CreateTime = c.DateTime(),
+                        LastOnline = c.DateTime(),
                         Sex = c.Int(nullable: false),
                         Description = c.String(),
                         Active = c.Int(nullable: false),
                         Deleted = c.Int(nullable: false),
                         Banned = c.Int(nullable: false),
-                        CityId = c.Int(nullable: false),
+                        CityId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
+                .ForeignKey("dbo.Cities", t => t.CityId)
                 .Index(t => t.CityId);
             
             CreateTable(
@@ -59,6 +62,7 @@ namespace MeetUp.Data.Migrations
                         Extension = c.String(),
                         Size = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
