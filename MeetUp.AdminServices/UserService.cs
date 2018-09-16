@@ -175,10 +175,10 @@
                     Password = hashedPass,
                     Salt = salt,
                     FullName = fullname,
-                    CityId = 1,
                     Description = description,
                     Birthday = birthday,
                     Sex = UserSex.Male
+                    //TODO pass sex as param
                 };
 
                 db.Users.Add(user);
