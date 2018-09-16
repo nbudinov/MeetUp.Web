@@ -45,7 +45,9 @@ namespace MeetUp.Services
 
         bool DeleteUserImage(int userId, int imageId);
 
-        bool LikeUser(int userLiking, int userLiked);    
+        bool LikeUser(int userLiking, int userLiked);
+
+        UserViewModel GetRandomUser(int withoutUserId);
 
         bool Create(string email, string password, string fullname);
 

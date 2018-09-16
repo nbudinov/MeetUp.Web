@@ -25,6 +25,13 @@
                     var text = $("#likeBtn_" + likedUserIdInt).html() == "Like" ? "Dislike" : "Like";
                     $("#likeBtn_" + likedUserIdInt).html(text);
 
+                    if (text == "Like") {
+                        toastr.info("You no longer like that user :(")
+                    } else {
+                        toastr.success("You like this user :)")
+                    }
+
+
                     // Removing the user div in WhoILike and WhoLikesMe pages
                     $("#userDiv_" + likedUserIdInt).remove();
                 }

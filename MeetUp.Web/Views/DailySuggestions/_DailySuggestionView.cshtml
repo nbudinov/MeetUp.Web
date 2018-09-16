@@ -1,0 +1,60 @@
+﻿@model MeetUp.Services.Models.Users.UserViewModel
+
+@{
+    ViewBag.Title = "Your daily suggestion";
+}
+
+@{ 
+    var word = "her";
+
+    if ((int)Model.Sex == 1)
+    {
+        word = "his";
+    } 
+}
+
+<h4>Visit @word profile ;)</h4>
+
+@{ 
+    var firstImageName = Model.Images.Any() ? Model.Images.First().Name : null;
+
+    var ext = (Model.Images.Any() && Model.Images.First().Extension != null) ?
+        Model.Images.First().Extension : ".png";
+}
+
+<div class="col-md-12">
+    <div class="card h-100">
+        <a href="/users/view/@Model.Id">
+            <img class="card-img-top" src="~/Files/GetImage/@firstImageName?ext=@ext" alt="" height="300" />
+        </a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="/users/view/@Model.Id">@Model.FullName </a>
+                @{
+                    if (Model.Birthday != null)
+                    {
+                        var userBD = (DateTime)Model.Birthday;
+                        var age = DateTime.Now.Year - userBD.Year;
+                        <span>
+                            @age г.
+                        </span>
+                    }
+                }
+
+                @*@if (Session["User"] != null)
+                {
+                    var isLiked = Model.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
+                    var btnText = "Like";
+                    if (isLiked != null)
+                    {
+                        btnText = "Dislike";
+                    }
+                    <button id="likeBtn_@Model.Id" class="btn btn-dark likeBtn" data-user_id="@Model.Id">@btnText</button>
+                }*@
+            </h4>
+            <p class="card-text">
+                @Model.Description
+            </p>
+        </div>
+    </div>
+</div>

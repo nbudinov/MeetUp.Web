@@ -38,5 +38,9 @@
         public int PeopleYouLikedCount { get; set; }
 
         public int PeopleLikedYouCount { get; set; }
+
+        public IEnumerable<User> ThisUsersLikes { get; set; } = new List<User>();
+
+        public IEnumerable<User> UsersLikeThisUser { get; set; } = new List<User>();
     }
 }

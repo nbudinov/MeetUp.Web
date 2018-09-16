@@ -52,8 +52,13 @@
     <Compile Include="Migrations\201809161327424_InitialMigration.Designer.cs">
       <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809161551313_DailySuggestionLogs.cs" />
+    <Compile Include="Migrations\201809161551313_DailySuggestionLogs.Designer.cs">
+      <DependentUpon>201809161551313_DailySuggestionLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\DailySuggestionLogs.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
@@ -69,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809161327424_InitialMigration.resx">
       <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809161551313_DailySuggestionLogs.resx">
+      <DependentUpon>201809161551313_DailySuggestionLogs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
