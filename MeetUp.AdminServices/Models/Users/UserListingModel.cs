@@ -11,7 +11,7 @@
 
         public string Description { get; set; }
 
-        public int Sex { get; set; }
+        public UserSex Sex { get; set; }
 
         public int Banned { get; set; }
 

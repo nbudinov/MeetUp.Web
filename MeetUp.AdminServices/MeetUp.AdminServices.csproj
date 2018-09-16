@@ -57,14 +57,14 @@
     <Compile Include="Models\Users\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MeetUp.Data\MeetUp.Data.csproj">
       <Project>{794e28d2-8a61-42f1-8706-a3519f6c4792}</Project>
       <Name>MeetUp.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

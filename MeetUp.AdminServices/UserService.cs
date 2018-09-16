@@ -177,8 +177,7 @@
                     FullName = fullname,
                     CityId = 1,
                     Description = description,
-                    Birthday = birthday,
-                    Sex = 1
+                    Birthday = birthday
                 };
 
                 db.Users.Add(user);
