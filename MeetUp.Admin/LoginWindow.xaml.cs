@@ -63,8 +63,6 @@ namespace MeetUp.Admin
                 }
 
             }
-            
-
         }
 
  
