@@ -10,6 +10,7 @@
         public DbSet<City> Cities { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<DailySuggestionLogs> DailySuggestionLogs { get; set; }
         //public DbSet<UserLike> UserLikes { get; set; }
 
         public MeetUpDbContext() 
