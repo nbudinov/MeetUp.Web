@@ -21,13 +21,11 @@
         {
             return this.db
                 .Users
-                .Where(
-                    u => u.Id != withoutUserId &&
-                    sex != 0 ? u.Sex == (UserSex)sex : true &&
-                    (((DateTime.Now.Year - u.Birthday.Value.Year >= ageFrom)
+                .Where(u => u.Id != withoutUserId )
+                .Where(u => (((DateTime.Now.Year - u.Birthday.Value.Year >= ageFrom)
                     && (DateTime.Now.Year - u.Birthday.Value.Year <= ageTo))
-                    || u.Birthday.Value == null)
-                    )
+                    || u.Birthday.Value == null))
+                .Where(u => sex != 0 ? u.Sex == (UserSex)sex : true)
                 .OrderByDescending(u => u.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -143,7 +141,9 @@
                     PeopleLikedYouCount = u.UsersLikeThisUser.Count,
                     PeopleYouLikedCount = u.ThisUserLikes.Count,
                     CreateTime = u.CreateTime,
-                    LastOnline = u.LastOnline
+                    LastOnline = u.LastOnline,
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    UsersLikeThisUser = u.UsersLikeThisUser.ToList()
                 })
                 .FirstOrDefault();
             //}
@@ -287,7 +287,6 @@
             return true;
         }
 
-
         public bool LikeUser(int userLikingId, int userLikedId)
         {
             var likingUser = this.db
@@ -322,6 +321,40 @@
 
             return true;
         }
+
+        public UserViewModel GetRandomUser(int withoutUserId)
+        {
+
+            return db.Users
+                .Where(u => u.Id != withoutUserId)
+                .Select(u => new UserViewModel
+                {
+                    Id = u.Id,
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    City = u.City.Name,
+                    Birthday = u.Birthday,
+                    Description = u.Description,
+                    Sex = u.Sex,
+                    Active = u.Active,
+                    Banned = u.Banned,
+                    Images = u.Images.Where(i => i.Deleted == false).Select(i => new UserImageModel
+                    {
+                        Id = i.Id,
+                        Path = i.Path,
+                        Size = i.Size,
+                        Extension = i.Extension
+                    }),
+                    PeopleLikedYouCount = u.UsersLikeThisUser.Count,
+                    PeopleYouLikedCount = u.ThisUserLikes.Count,
+                    CreateTime = u.CreateTime,
+                    LastOnline = u.LastOnline,
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    UsersLikeThisUser = u.UsersLikeThisUser.ToList()
+                })
+                .OrderBy(u => Guid.NewGuid()).FirstOrDefault();
+        }
+
 
         public bool Create(string email, string password, string fullname)
         {

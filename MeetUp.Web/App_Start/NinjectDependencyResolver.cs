@@ -28,6 +28,7 @@
         private void AddBindings()
         {
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IDailySuggestionService>().To<DailySuggestionService>();
         }
     }
 }
