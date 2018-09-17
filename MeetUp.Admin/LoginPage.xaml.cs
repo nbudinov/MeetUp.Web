@@ -1,5 +1,4 @@
 ﻿using MeetUp.AdminServices;
-using MeetUp.AdminServices.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,23 +17,23 @@ using System.Windows.Shapes;
 namespace MeetUp.Admin
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginWindow : Page
+    public partial class LoginPage : Page
     {
-
         private UserService userService;
 
-        public LoginWindow()
+        public LoginPage()
         {
             InitializeComponent();
             userService = new UserService();
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var errorsWhileEdit = "";
-            
+
             if (EmailText.Text.Length == 0)
             {
                 errorsWhileEdit = "Invalid Email \n";
@@ -51,8 +50,8 @@ namespace MeetUp.Admin
             }
             else
             {
-                
-                if (userService.Login(EmailText.Text, PasswordText.Password.ToString()))
+
+                if (userService.Login(EmailText.Text.ToString(), PasswordText.Password.ToString()))
                 {
                     this.NavigationService.Navigate(new ListUsersPage());
                 }
@@ -64,6 +63,6 @@ namespace MeetUp.Admin
             }
         }
 
- 
+
     }
 }
