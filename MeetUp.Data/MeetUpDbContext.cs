@@ -9,6 +9,7 @@
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<DailySuggestionLogs> DailySuggestionLogs { get; set; }
         public DbSet<UserSuperLikeLogs> UserSuperLikeLogs { get; set; }
 
