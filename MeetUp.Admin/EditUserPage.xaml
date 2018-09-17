@@ -17,28 +17,27 @@
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="49,47,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
         <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,47,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
 
-        <Label Content="Email" HorizontalAlignment="Left" Margin="45,110,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
-        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
+        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Full Name" HorizontalAlignment="Left" Margin="45,167,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
-        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Full Name" HorizontalAlignment="Left" Margin="45,149,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Passowrd" HorizontalAlignment="Left" Margin="45,217,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="129,217,0,0" VerticalAlignment="Top" Width="120" Height="23" Name="PasswordText" />
+        <Label Content="Passowrd" HorizontalAlignment="Left" Margin="45,199,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,199,0,0" VerticalAlignment="Top" Width="120" Height="23" Name="PasswordText" />
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="45,275,0,0" VerticalAlignment="Top" Height="30" Width="79"/>
-        <TextBox HorizontalAlignment="Left" Name="DescriptionText" Height="23" Margin="129,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="45,244,0,0" VerticalAlignment="Top" Height="30" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Name="DescriptionText" Height="24" Margin="129,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,319,0,0" VerticalAlignment="Top"/>
+        <Button Content="Edit images" Name="EditImageButton" HorizontalAlignment="Left" Margin="45,291,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Edit_Image" Height="29"/>
+
+        <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,330,0,0" VerticalAlignment="Top"/>
 
         <Button Content="Edit" HorizontalAlignment="Left" Margin="49,350,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" Height="32"/>
 
-        <Button Content="Ban this user" Name="BanUserButton" HorizontalAlignment="Left" Margin="49,387,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Ban" Height="29"/>
+        <Button Content="Ban this user" Name="BanUserButton" HorizontalAlignment="Left" Margin="50,388,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_Ban" Height="29"/>
         <Button Content="Unban this user" Name="UnbanUserButton" HorizontalAlignment="Left" Margin="159,387,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_Unban" Height="29"/>
-        
-        <Image Margin="382,90,100,130" Name="imgPhoto" Stretch="Fill" />
-        <Button Content="Upload image" HorizontalAlignment="Left" Margin="498,387,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_1"/>
-        
+
     </Grid>
 
 </Page>

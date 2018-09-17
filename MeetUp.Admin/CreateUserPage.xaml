@@ -15,7 +15,7 @@
 
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
         <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,57,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
-        
+
         <Label Content="Create User" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" Height="32" Width="199"/>
 
         <Label Content="Email" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top" Height="23" Width="49"/>
@@ -27,10 +27,13 @@
         <Label Content="Password" HorizontalAlignment="Left" Margin="50,218,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
         <PasswordBox HorizontalAlignment="Left" Margin="129,218,0,0" VerticalAlignment="Top" Width="120" Name="PasswordNameText" Height="23" />
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="50,274,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
-        <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Confirmation&#xD;&#xA;Password" HorizontalAlignment="Left" Margin="50,258,0,0" VerticalAlignment="Top" Height="47" Width="88"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,272,0,0" VerticalAlignment="Top" Width="120" Name="ConfirmationPasswordNameText" Height="23" />
 
-        <Button Content="Create" HorizontalAlignment="Left" Margin="50,332,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="50,310,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,317,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Button Content="Create" HorizontalAlignment="Left" Margin="50,373,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
 
 
 
