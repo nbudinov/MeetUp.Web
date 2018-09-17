@@ -243,6 +243,7 @@
     <Content Include="Views\Home\WhoLikesMe.cshtml" />
     <Content Include="Views\Users\NotFound.cshtml" />
     <Content Include="Views\DailySuggestions\_DailySuggestionView.cshtml" />
+    <Content Include="Views\Home\SuperLikes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

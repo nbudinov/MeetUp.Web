@@ -11,8 +11,8 @@
 
         public string Email { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(70)]
+        [MinLength(3, ErrorMessage = "Full name min length is 3 chars")]
+        [MaxLength(70, ErrorMessage = "Full name max length is 70 chars")]
         public string FullName { get; set; }
 
         [MinLength(10, ErrorMessage = "Description min length is 10 chars")]
@@ -26,6 +26,8 @@
         public DateTime? CreateTime { get; set; }
 
         public DateTime? LastOnline { get; set; }
+
+        public string Location { get; set; }
 
         public UserSex Sex { get; set; }
 

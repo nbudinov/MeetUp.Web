@@ -2,6 +2,10 @@
 
 $(document).ready(function () {
 
+    var data = {
+
+    }
+
     if (getCookie(POPUP_COOKIE_NAME) == "") {
 
         var intervalId = setInterval(function () {
@@ -10,7 +14,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: "/dailyUserSuggestion",
-                    data: data,
+                    data: {},
                     success: function (data) {
                         console.log(data)
                         if (data.html) {

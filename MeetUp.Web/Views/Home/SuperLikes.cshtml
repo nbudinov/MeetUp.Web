@@ -1,12 +1,15 @@
 ﻿@model  MeetUp.Web.Models.Home.UserPageListingModel
+
 @{
-    ViewBag.Title = "Who Likes Me";
+    ViewBag.Title = "Super Likes";
 }
 
-<h1 class="my-4">
-    @ViewBag.Title
-</h1>
+<h2>@ViewBag.Title</h2>
+@if (Model.TotalUsers > 0)
+{
+    <h5>@Model.TotalUsers people super liked you.</h5>
 
+}
 
 <div class="row">
     @if (Model.TotalUsers > 0)
@@ -27,16 +30,6 @@
                         <h4 class="card-title">
                             <a href="#">@user.Name</a>
 
-                            @*@if (Session["User"] != null)
-                                {
-                                    var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
-                                    var btnText = "Like";
-                                    if (isLiked != null)
-                                    {
-                                        btnText = "Dislike";
-                                    }
-                                    <button id="likeBtn_@user.Id" class="btn btn-dark likeBtn" data-user_id="@user.Id">@btnText</button>
-                                }*@
                         </h4>
                         <p class="card-text">
                             @user.Description
@@ -48,7 +41,7 @@
     }
     else
     {
-        <div>No people liked you yet.</div>
+        <div>Nobody super liked you yet.</div>
     }
 
 </div>

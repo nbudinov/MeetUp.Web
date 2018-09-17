@@ -7,28 +7,49 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    <div>
+<div>
 
-        @*@if (TempData["ErrorMSG"] != null)
+    @*@if (TempData["ErrorMSG"] != null)
         {
             <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
             <br /><br />
         }*@
 
-        @Html.TextBoxFor(s => s.Email, new { @placeholder = "Email", @class = "form-control" })
-        <br /> 
+    @Html.TextBoxFor(s => s.Email, new { @placeholder = "Email", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
 
-        @Html.TextBoxFor(s => s.FullName, new { @placeholder = "Full name", @class = "form-control" })
-        <br /> 
+    <br />
 
-        @Html.PasswordFor(s => s.Password, new { @placeholder = "Password", @class = "form-control" })
-        <br />
+    @Html.TextBoxFor(s => s.FullName, new { @placeholder = "Full name", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
 
-        @Html.PasswordFor(s => s.ConfirmPassword, new { @placeholder = "Confirm password", @class = "form-control" })
+    <br />
 
-        <br /> 
-        <button type="submit" class="btn btn-success">Register</button>
-    </div>
+    @Html.PasswordFor(s => s.Password, new { @placeholder = "Password", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+    <br />
+
+    @Html.PasswordFor(s => s.ConfirmPassword, new { @placeholder = "Confirm password", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+    <br />
+
+    @Html.EnumDropDownListFor(m => m.Sex, "Select a sex", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Sex, "", new { @class = "text-danger" })
+
+    <br />
+
+    @Html.TextBoxFor(s => s.Location, new { @placeholder = "Location", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+
+    <br />
+    @Html.TextBoxFor(m => m.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
+
+    <br />
+    <button type="submit" class="btn btn-success">Register</button>
+</div>
 }
 
 

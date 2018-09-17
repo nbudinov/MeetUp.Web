@@ -36,6 +36,7 @@
                     Description = u.Description,
                     Banned = u.Banned,
                     Sex = u.Sex,
+                    Location = u.Location,
                     Birthday = u.Birthday,
                     Images = u.Images.Where(i => i.Deleted == false).Select(i => new UserImageModel
                     {
@@ -129,6 +130,7 @@
                     Birthday = u.Birthday,
                     Description = u.Description,
                     Sex = u.Sex,
+                    Location = u.Location,
                     Active = u.Active,
                     Banned = u.Banned,
                     Images = u.Images.Where(i => i.Deleted == false).Select(i => new UserImageModel
@@ -172,7 +174,8 @@
             int? deleted = null,
             int? banned = null,
             DateTime? lastOnline = null,
-            UserSex? sex = null)
+            UserSex? sex = null,
+            string location = null)
         {
             //using (var db = new MeetUpDbContext())
             //{
@@ -197,6 +200,7 @@
             dbUser.Banned = banned ?? dbUser.Banned;
             dbUser.LastOnline = lastOnline ?? dbUser.LastOnline;
             dbUser.Sex = sex ?? dbUser.Sex;
+            dbUser.Location = location ?? dbUser.Location;
 
             db.SaveChanges();
             //}
@@ -322,6 +326,107 @@
             return true;
         }
 
+        public bool SuperLikeUser(int userLikingId, int userLikedId)
+        {
+            var likingUser = this.db
+                  .Users
+                  .Where(u => u.Id == userLikingId)
+                  .FirstOrDefault();
+
+            var likedUser = this.db
+                .Users
+                .Where(u => u.Id == userLikedId)
+                .FirstOrDefault();
+
+            if (likingUser == null || likedUser == null)
+            {
+                return false;
+            }
+
+            var toLike = !likingUser.ThisUserSuperLikes.Any(u => u.Id == likedUser.Id);
+
+            if (toLike)
+            {
+
+                likingUser.ThisUserSuperLikes.Add(likedUser);
+                likedUser.UsersSuperLikeThisUser.Add(likingUser);
+            }
+            else
+            {
+                //likingUser.ThisUserLikes.Remove(likedUser);
+                //likedUser.UsersLikeThisUser.Remove(likingUser);
+            }
+
+            db.SaveChanges();
+
+            return true;
+        }
+
+        public void SaveSuperLikeLog(int userLikingId, int userLikedId)
+        {
+            var d = new UserSuperLikeLogs
+            {
+                UserLikedId = userLikedId,
+                UserLikingId = userLikingId,
+                Date = DateTime.Now
+            };
+
+            this.db.UserSuperLikeLogs.Add(d);
+            db.SaveChanges();
+        }
+
+        public bool ShouldSuperLikeToday(int userId)
+        {
+            var today = DateTime.Now.Date;
+
+            return this.db
+                .UserSuperLikeLogs
+                .Where(l => l.UserLikingId == userId)
+                .Where(l => l.Date.Year == today.Year && l.Date.Month == today.Month && l.Date.Day == today.Day)
+                .FirstOrDefault() == null;
+        }
+
+        public int WhoSuperLikedMeTotal(int userId)
+        {
+            return db.Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefault()
+                .UsersSuperLikeThisUser
+                .Count();
+        }
+
+        public IEnumerable<UserListingModel> WhoSuperLikedMe(int userId, int page = 1, int pageSize = 10)
+        {
+            var users = this.db
+                  .Users
+                  .Where(u => u.Id == userId)
+                  .FirstOrDefault()
+                  .UsersSuperLikeThisUser
+                  .OrderByDescending(u => u.Id)
+                  .Skip((page - 1) * pageSize)
+                  .Take(pageSize)
+                  .Select(u => new UserListingModel
+                  {
+                      Id = (int)u.Id,
+                      Name = u.FullName,
+                      Description = u.Description,
+                      Banned = u.Banned,
+                      Sex = u.Sex,
+                      Images = u.Images.Select(i => new UserImageModel
+                      {
+                          Id = i.Id,
+                          Path = i.Path,
+                          Size = i.Size,
+                          Extension = i.Extension
+                      }),
+                      ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                      UsersLikeThisUser = u.UsersLikeThisUser.ToList()
+                  })
+                  .ToList();
+
+            return users;
+        }
+
         public UserViewModel GetRandomUser(int withoutUserId)
         {
 
@@ -355,8 +460,7 @@
                 .OrderBy(u => Guid.NewGuid()).FirstOrDefault();
         }
 
-
-        public bool Create(string email, string password, string fullname)
+        public bool Create(string email, string password, string fullname, UserSex sex, string location, DateTime birthday)
         {
             //using (var db = new MeetUpDbContext())
             //{
@@ -385,7 +489,10 @@
                 FullName = fullname,
                 Role = role,
                 CreateTime = DateTime.Now,
-                LastOnline = DateTime.Now
+                LastOnline = DateTime.Now,
+                Sex = sex,
+                Location = location,
+                Birthday = birthday
             };
 
             db.Users.Add(user);
@@ -423,6 +530,5 @@
 
             return false;
         }
-
     }
 }

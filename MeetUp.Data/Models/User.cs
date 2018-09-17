@@ -33,6 +33,8 @@
 
         public DateTime? LastOnline { get; set; }
 
+        public string Location { get; set; }
+
         public UserSex Sex { get; set; }
 
         public string Description { get; set; }
@@ -52,6 +54,10 @@
         public virtual ICollection<User> ThisUserLikes { get; set; } = new HashSet<User>();
 
         public virtual ICollection<User> UsersLikeThisUser { get; set; } = new HashSet<User>();
+
+        public virtual ICollection<User> ThisUserSuperLikes { get; set; } = new HashSet<User>();
+
+        public virtual ICollection<User> UsersSuperLikeThisUser { get; set; } = new HashSet<User>();
 
         public virtual ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }

@@ -30,7 +30,8 @@ namespace MeetUp.Services
             int? deleted = null,
             int? banned = null,
             DateTime? lastOnline = null,
-            UserSex? sex = null);
+            UserSex? sex = null,
+            string location = null);
 
 
         int Count();
@@ -47,15 +48,21 @@ namespace MeetUp.Services
 
         bool LikeUser(int userLiking, int userLiked);
 
+        bool SuperLikeUser(int userLikingId, int userLikedId);
+
+        void SaveSuperLikeLog(int userLikingId, int userLikedId);
+
+        bool ShouldSuperLikeToday(int userId);
+
+        int WhoSuperLikedMeTotal(int userId);
+
+        IEnumerable<UserListingModel> WhoSuperLikedMe(int userId, int page = 1, int pageSize = 10);
+
         UserViewModel GetRandomUser(int withoutUserId);
 
-        bool Create(string email, string password, string fullname);
+        bool Create(string email, string password, string fullname, UserSex sex, string location, DateTime birthday);
 
         bool Login(string email, string password);
-
-
-
-
 
 
     }

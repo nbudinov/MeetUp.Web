@@ -7,13 +7,13 @@ namespace MeetUp.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DailySuggestionLogs : IMigrationMetadata
+    public sealed partial class InitialMiration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DailySuggestionLogs));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMiration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809161551313_DailySuggestionLogs"; }
+            get { return "201809171744462_InitialMiration"; }
         }
         
         string IMigrationMetadata.Source

@@ -48,13 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeetUpDbContext.cs" />
-    <Compile Include="Migrations\201809161327424_InitialMigration.cs" />
-    <Compile Include="Migrations\201809161327424_InitialMigration.Designer.cs">
-      <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809161551313_DailySuggestionLogs.cs" />
-    <Compile Include="Migrations\201809161551313_DailySuggestionLogs.Designer.cs">
-      <DependentUpon>201809161551313_DailySuggestionLogs.cs</DependentUpon>
+    <Compile Include="Migrations\201809171744462_InitialMiration.cs" />
+    <Compile Include="Migrations\201809171744462_InitialMiration.Designer.cs">
+      <DependentUpon>201809171744462_InitialMiration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
@@ -65,6 +61,8 @@
     <Compile Include="Models\UserLike.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\UserSex.cs" />
+    <Compile Include="Models\UserSuperLike.cs" />
+    <Compile Include="Models\UserSuperLikeLogs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,11 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809161327424_InitialMigration.resx">
-      <DependentUpon>201809161327424_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809161551313_DailySuggestionLogs.resx">
-      <DependentUpon>201809161551313_DailySuggestionLogs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809171744462_InitialMiration.resx">
+      <DependentUpon>201809171744462_InitialMiration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

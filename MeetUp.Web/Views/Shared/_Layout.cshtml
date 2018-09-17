@@ -22,13 +22,14 @@
                     @Html.ListItemAction("Home", "Index", "Home")
 
                     @*<li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>*@
+            <a class="nav-link" href="#">About</a>
+        </li>*@
 
                     @if (Session["User"] != null)
                     {
                         @Html.ListItemAction("Who I Like", "WhoILike", "Home")
                         @Html.ListItemAction("Who Likes Me", "WhoLikesMe", "Home")
+                        @Html.ListItemAction("Super Likes", "SuperLikes", "Home")
 
                         @Html.ListItemAction(Session["User"].ToString(), "myprofile", "Home")
                         @Html.ListItemAction("Logout", "Logout", "Account")

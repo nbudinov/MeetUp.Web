@@ -20,6 +20,8 @@
         public DateTime? Birthday { get; set; }
 
         public UserSex Sex { get; set; }
+        
+        public string Location { get; set; }
 
         public int Banned { get; set; }
 

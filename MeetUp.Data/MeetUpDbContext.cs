@@ -10,6 +10,7 @@
         public DbSet<City> Cities { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<DailySuggestionLogs> DailySuggestionLogs { get; set; }
+        public DbSet<UserSuperLikeLogs> UserSuperLikeLogs { get; set; }
 
         //public DbSet<UserLike> UserLikes { get; set; }
 
@@ -30,6 +31,16 @@
                     c.MapRightKey("OtherUserId");
                     c.ToTable("UserLikes");
                 });
+
+            builder.Entity<User>()
+               .HasMany(u => u.ThisUserSuperLikes)
+               .WithMany(u => u.UsersSuperLikeThisUser)
+               .Map(c =>
+               {
+                   c.MapLeftKey("LikingUserId");
+                   c.MapRightKey("LikedUserId");
+                   c.ToTable("UserSuperLikes");
+               });
         }
     }
 }

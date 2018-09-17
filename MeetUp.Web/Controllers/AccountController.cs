@@ -28,7 +28,7 @@
                 return View(model);
             }
 
-            var success = this.users.Create(model.Email, model.Password, model.FullName);
+            var success = this.users.Create(model.Email, model.Password, model.FullName, model.Sex, model.Location, model.Birthday);
 
             if (!success)
             {

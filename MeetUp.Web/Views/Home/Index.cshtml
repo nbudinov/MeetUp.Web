@@ -60,6 +60,7 @@
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="/users/view/@user.Id">@user.Name </a>
+
                                 @{
                                     if (user.Birthday != null)
                                     {
@@ -70,6 +71,8 @@
                                         </span>
                                     }
                                 }
+                            </h4>
+                                <p>@user.Location</p>
 
 
                                 @if (Session["User"] != null)
@@ -81,8 +84,15 @@
                                         btnText = "Dislike";
                                     }
                                     <button id="likeBtn_@user.Id" class="btn btn-dark likeBtn" data-user_id="@user.Id">@btnText</button>
+
+                                    <br />
+
+                                    if (ViewBag.ShouldSuperLike == 1)
+                                    {
+                                        <button id="superLikeBtn_@user.Id" class="btn btn-danger superLikeBtn" data-user_id="@user.Id">SUPER LIKE</button>
+                                    }
                                 }
-                            </h4>
+                            
                             <p class="card-text">
                                 @user.Description
                             </p>

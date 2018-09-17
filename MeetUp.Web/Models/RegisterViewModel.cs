@@ -1,5 +1,7 @@
 ﻿namespace MeetUp.Web.Models
 {
+    using MeetUp.Data.Models;
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class RegisterViewModel
@@ -23,5 +25,16 @@
         //[Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Range(1, 3, ErrorMessage = "Select a correct sex")]
+        public UserSex Sex { get; set; }
+
+        [Required]
+        [MinLength(3, ErrorMessage = "Location minimum length is 3")]
+        public string Location { get; set; }
+
+        [Required]
+        public DateTime Birthday { get; set; }
+
     }
 }

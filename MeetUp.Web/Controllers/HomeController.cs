@@ -30,19 +30,26 @@
             {
                 userId = (int)Session["UserId"];
                 totalUsers -= 1;
+
+                if (this.users.ShouldSuperLikeToday(userId))
+                {
+                    ViewBag.ShouldSuperLike = 1;
+                }
             }
 
-            if(ageFrom != 0)
+            if (ageFrom != 0)
             {
                 ViewBag.AgeFrom = ageFrom;
             }
 
-            if(ageTo != 120)
+            if (ageTo != 120)
             {
                 ViewBag.AgeTo = ageTo;
             }
 
             ViewBag.Sex = sex;
+
+           
 
             var Users = this.users.All(page, PAGE_SIZE, userId, ageFrom, ageTo, sex);
 
@@ -57,7 +64,7 @@
         [Route("myprofile")]
         public ActionResult MyProfile()
         {
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
                 return Redirect("/");
             }
@@ -89,7 +96,7 @@
 
             var currUserId = (int)Session["UserId"];
 
-            this.users.UpdateUser(currUserId, model.FullName, model.Description, null, model.Birthday, null, null, null, null, null, model.Sex);
+            this.users.UpdateUser(currUserId, model.FullName, model.Description, null, model.Birthday, null, null, null, null, null, model.Sex, model.Location);
 
             TempData["Success"] = "Successfully edited your profile!";
 
@@ -101,7 +108,7 @@
         {
             var data = new Dictionary<string, string>();
 
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
                 data.Add("error", "Not logged in");
             }
@@ -117,67 +124,39 @@
 
             //this.users.LikeUser()
 
-            return Json(data) ;
+            return Json(data);
         }
 
-        //[HttpPost]
-        //public ActionResult UploadFiles(HttpPostedFileBase[] files)
-        //{
-        //    var userId = (int)Session["UserId"];
+        [HttpPost]
+        public JsonResult SuperLikeUser(int id)
+        {
+            var data = new Dictionary<string, string>();
 
-        //    foreach (HttpPostedFileBase file in files)
-        //    {
-        //        if (file != null && file.ContentLength > 0)
-        //        {
-        //            var InputFileName = Path.GetFileName(file.FileName);
-        //            var ServerSavePath = Path.Combine(Server.MapPath(IMAGES_SAVE_PAGE) + userId + InputFileName);
-        //            file.SaveAs(ServerSavePath);
+            if (Session["UserId"] == null)
+            {
+                data.Add("error", "Not logged in");
+            }
+            else
+            {
+                var userLiking = (int)Session["UserId"];
 
-        //            //this.users.SaveUserImage(userId, ServerSavePath, file.ContentLength);
-        //        }
-        //    }
+                if(this.users.ShouldSuperLikeToday(userLiking))
+                {
+                    this.users.SuperLikeUser(userLiking, id);
 
-        //    TempData["Success"] = files.Count().ToString() + " files uploaded successfully.";
+                    this.users.SaveSuperLikeLog(userLiking, id);
 
-        //    return Redirect("/myprofile");
-        //}
+                    data.Add("success", "1");
+                    data.Add("likedUser", id.ToString());
+                }
+                else
+                {
+                    data.Add("error", "Already superliked today");
+                }
+            }
 
-        //[HttpPost]
-        //public void Upload()
-        //{
-        //    var userId = (int)Session["UserId"];
-
-        //    for (int i = 0; i < Request.Files.Count; i++)
-        //    {
-        //        var file = Request.Files[i];
-        //        var ext = Path.GetExtension(file.FileName);
-
-        //        var fileName = Guid.NewGuid();
-        //        var fileNameString = fileName.ToString();
-        //        var fileNameStringWithExt = fileNameString + ext;
-        //        //Path.GetFileName(file.FileName);
-
-        //        var path = Path.Combine(Server.MapPath("~/Files/UsersImgs/"), fileNameStringWithExt);
-        //        file.SaveAs(path);
-
-        //        this.users.SaveUserImage(userId, path, file.ContentLength, ext);
-        //    }
-
-        //}
-
-        //[HttpGet]
-        //public ActionResult GetImage(string id, string ext = ".jpg")
-        //{
-        //    if(id != null)
-        //    {
-        //        var dir = Server.MapPath("/Files/UsersImgs");
-        //        var path = Path.Combine(dir, id + ext);
-        //        var file = base.File(path, "image/" + ext.Split(new char[] { '.' }).Last());
-        //        return file;
-        //    }
-
-        //    return null;
-        //}
+            return Json(data);
+        }
 
         public ActionResult WhoILike(int page = 1)
         {
@@ -211,6 +190,31 @@
 
             var total = this.users.WhoLikesMeTotal(userId);
             var users = this.users.WhoLikesMe(userId, page, PAGE_SIZE);
+
+            return View(new UserPageListingModel
+            {
+                Users = users,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(total / (double)PAGE_SIZE),
+                TotalUsers = users.Count()
+            });
+        }
+
+        public ActionResult SuperLikes(int page = 1)
+        {
+            var userId = 0;
+
+            if (Session["UserId"] != null)
+            {
+                userId = (int)Session["UserId"];
+            }
+            else
+            {
+                return Redirect("/");
+            }
+
+            var total = this.users.WhoSuperLikedMeTotal(userId);
+            var users = this.users.WhoSuperLikedMe(userId, page, PAGE_SIZE);
 
             return View(new UserPageListingModel
             {
