@@ -34,7 +34,6 @@ namespace MeetUp.Admin
             EmailText.IsEnabled = false;
             FullNameText.Text = user.FullName;
             DescriptionText.Text = user.Description;
-            imgPhoto.Source = new BitmapImage(new Uri(GetImagePath(user.Images)));
             if (user.Birthday != null)
             {
                 DateTime brth = (DateTime)user.Birthday;
@@ -110,19 +109,10 @@ namespace MeetUp.Admin
             this.NavigationService.Navigate(new ListUsersPage());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_Edit_Image(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
-            {
-                imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
-            }
-            long fileSize = new FileInfo(op.FileName).Length;
-            userService.SaveUserImage(this.UserId, imgPhoto.Source.ToString(), (int)fileSize, Path.GetExtension(op.FileName));
+            var editUploadedImagesPage = new EditUploadedImagesPage(this.UserId);
+            this.NavigationService.Navigate(editUploadedImagesPage);
         }
     }
 }

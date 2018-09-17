@@ -58,7 +58,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CreateCityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditCitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUploadedImagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -66,11 +78,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListCitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListUsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,17 +98,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CreateCityPage.xaml.cs">
+      <DependentUpon>CreateCityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateUserPage.xaml.cs">
       <DependentUpon>CreateUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCitiesPage.xaml.cs">
+      <DependentUpon>EditCitiesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditUploadedImagesPage.xaml.cs">
+      <DependentUpon>EditUploadedImagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditUserPage.xaml.cs">
       <DependentUpon>EditUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListCitiesPage.xaml.cs">
+      <DependentUpon>ListCitiesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListUsersPage.xaml.cs">
       <DependentUpon>ListUsersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

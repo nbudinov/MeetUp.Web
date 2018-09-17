@@ -15,7 +15,6 @@ namespace MeetUp.Admin
     {
         private readonly UserService users;
         public IEnumerable<UserListingModel> allUsers { get; set; }
-        public IEnumerable<UserListingModel> listedUsers { get; set; }
         //public ObservableCollection<User> usersFromDb = new ObservableCollection<User>();
 
 
@@ -64,15 +63,16 @@ namespace MeetUp.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var createUserPage = new CreateUserPage();
-    
+            // Go to Create user page
+            var createUserPage = new CreateUserPage();    
             this.NavigationService.Navigate(createUserPage);
-
         }
-
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+              
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            // List cities
+            var listCitiesPage = new ListCitiesPage();
+            this.NavigationService.Navigate(listCitiesPage);
         }
     }
 }

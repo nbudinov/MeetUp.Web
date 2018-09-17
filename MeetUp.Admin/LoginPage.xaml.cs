@@ -28,7 +28,6 @@ namespace MeetUp.Admin
         public LoginWindow()
         {
             InitializeComponent();
-
             userService = new UserService();
         }
 

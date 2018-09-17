@@ -1,14 +1,26 @@
 ﻿namespace MeetUp.AdminServices
 {
+    using System;
     using Data;
     using Data.Models;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Models.Users;
+    using System.Windows.Media.Imaging;
 
     public class UserService
     {
+        public IEnumerable<Image> getAllPhotos(int userId)
+           {
+
+            var result = (List<Image>)null;
+            using (var db = new MeetUpDbContext())
+            {
+                result = (from image in db.Images where image.UserId == userId && image.Deleted == false select image).ToList();
+            }
+
+            return result;
+           }
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {
             using (var db = new MeetUpDbContext())
@@ -38,6 +50,7 @@
             }
         }
 
+ 
         public UserViewModel GetUserById(int id)
         {
             using (var db = new MeetUpDbContext())
@@ -65,6 +78,21 @@
                     })
                     .FirstOrDefault();
             }
+        }
+
+        public void DeleteImage(int id)
+        {
+
+            using (var db = new MeetUpDbContext())
+            {
+                var image = db.Images
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+
+                image.Deleted = true;
+                db.SaveChanges();
+            }
+
         }
 
         public UserServiceModel GetUserByEmail(string email)
