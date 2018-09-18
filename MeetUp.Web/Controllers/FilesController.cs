@@ -88,7 +88,7 @@
                 var file = Request.Files[i];
                 var ext = Path.GetExtension(file.FileName);
 
-                if(ext != ".jpg" && ext != ".jpeg")
+                if(ext.ToLower() != ".jpg" && ext.ToLower() != ".jpeg")
                 {
                     return Json(new { Error = "Invalid file type" });
                 }

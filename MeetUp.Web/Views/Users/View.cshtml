@@ -27,12 +27,14 @@
             @*<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">*@
             <div class="card-body">
                 <h3 class="card-title">@Model.FullName</h3>
-                <h4>@Model.City</h4>
-                <h6>@Model.Email</h6>
+                <h4>From: @Model.Location</h4>
+                
                 <p class="">
                     Joined: @Model.CreateTime.Value
                 </p>
-                
+                <p class="">
+                    Last online: @Model.LastOnline.Value
+                </p>
                 @if (Session["User"] != null)
                 {
                     var isLiked = Model.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
@@ -48,18 +50,39 @@
         <!-- /.card -->
         <div class="card card-outline-secondary my-4">
             <div class="card-header">
+                Email: <b>@Model.Email</b>
+            </div>
+            <hr />
+            <div class="card-header">
+                This user considers himself a @Model.Sex
+            </div>
+            <hr />
+            <div class="card-header">
+                @if(Model.PeopleLikedYouCount > 2)
+                {
+                    var p = Model.PeopleLikedYouCount == 1 ? "person" : "people";
+                    <p>This user is pretty famous and is liked by <b>@Model.PeopleLikedYouCount</b> @p</p>
+                }
+                else
+                {
+                    var p = Model.PeopleLikedYouCount == 1 ? "person" : "people";
+                    <p>This user is liked by <b>@Model.PeopleLikedYouCount</b> @p</p>
+                }
+            </div>
+            <hr />
+            <div class="card-header">
                 A few words about me...
             </div>
             <div class="card-body">
                 <p>@Model.Description</p>
                 @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>*@
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>*@
                 <hr>
                 @*<a href="#" class="btn btn-success">Leave a Review</a>*@
             </div>

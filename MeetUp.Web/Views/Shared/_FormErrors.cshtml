@@ -8,20 +8,30 @@
     <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
 }
 
-@*@if (!ViewData.ModelState.IsValid)
+@if (TempData["Error"] != null)
 {
+    <div class="alert alert-danger alert-dismissible show" role="alert">
+        <strong>Error! </strong> @TempData["Error"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
-    foreach (ModelState modelState in ViewData.ModelState.Values)
+@*@if (!ViewData.ModelState.IsValid)
     {
-        foreach (ModelError error in modelState.Errors)
+
+        foreach (ModelState modelState in ViewData.ModelState.Values)
         {
-            <div class="alert alert-danger alert-dismissible show" role="alert">
-                <strong>Error! </strong> @error.ErrorMessage
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            foreach (ModelError error in modelState.Errors)
+            {
+                <div class="alert alert-danger alert-dismissible show" role="alert">
+                    <strong>Error! </strong> @error.ErrorMessage
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
         }
-    }
-}*@
+    }*@
 

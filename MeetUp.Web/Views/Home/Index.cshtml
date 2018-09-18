@@ -16,43 +16,58 @@
 
             <div class="widget clearfix">
                 <form method="get" action="">
+                    Age from:
                     <input type="text" value="@ViewBag.AgeFrom" name="ageFrom" class="form-control" placeholder="Age from" />
-                    -
+                    <hr />
+                    Age to:
                     <input type="text" value="@ViewBag.AgeTo" name="ageTo" class="form-control" placeholder="Age to" />
 
-                    <input type="submit" value="Filter" class="form-control" />
-
-                </form>
-            </div>
-
-            <hr/>
-            
-            <div class="widget clearfix">
-                <form method="get" action="" id="formFilterSex">
-                    Sex:
+                    <hr />
+                    Gender:
                     <select name="sex" class="form-control" id="filterSex">
                         <option value="0">All</option>
                         <option value="1" @(ViewBag.Sex == 1 ? "selected" : "")>Males</option>
                         <option value="2" @(ViewBag.Sex == 2 ? "selected" : "")>Females</option>
                     </select>
+                    <hr />
+
+                    <button type="submit" class=" form-control">Filter</button>
 
                 </form>
             </div>
+            <hr />
+
+            <a href="/" class="form-control" style="text-align:center">Clear filter</a>
+            <hr />
+
+            @*<div class="widget clearfix">
+            <form method="get" action="" id="formFilterSex">
+                Sex:
+                <select name="sex" class="form-control" id="filterSex">
+                    <option value="0">All</option>
+                    <option value="1" @(ViewBag.Sex == 1 ? "selected" : "")>Males</option>
+                    <option value="2" @(ViewBag.Sex == 2 ? "selected" : "")>Females</option>
+                </select>
+
+            </form>
+        </div>*@
         </aside>
     </div>
 
     <div id="" class="col-md-9 col-sm-9 ">
         <div class="row">
 
-            @foreach (var user in Model.Users)
+        @if (Model.TotalUsers > 0)
             {
-                var firstImageName = user.Images.Any() ? user.Images.First().Name : null;
+                foreach (var user in Model.Users)
+                {
+                    var firstImageName = user.Images.Any() ? user.Images.First().Name : null;
 
-                var ext = (user.Images.Any() && user.Images.First().Extension != null) ?
-                    user.Images.First().Extension : Model.DefaultUserImageExt;
+                    var ext = (user.Images.Any() && user.Images.First().Extension != null) ?
+                        user.Images.First().Extension : Model.DefaultUserImageExt;
 
 
-                <div class="col-md-4">
+                    <div class="col-md-4">
                     <div class="card h-100">
                         <a href="/users/view/@user.Id">
                             <img class="card-img-top" src="~/Files/GetImage/@firstImageName?ext=@ext" alt="" height="300" />
@@ -72,34 +87,41 @@
                                     }
                                 }
                             </h4>
-                                <p>@user.Location</p>
+                            <p>@user.Location</p>
 
 
-                                @if (Session["User"] != null)
+                            @if (Session["User"] != null)
+                            {
+                                var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
+                                var btnText = "Like";
+                                if (isLiked != null)
                                 {
-                                    var isLiked = user.UsersLikeThisUser.Where(u => u.Id == Convert.ToInt32(Session["UserId"])).FirstOrDefault();
-                                    var btnText = "Like";
-                                    if (isLiked != null)
-                                    {
-                                        btnText = "Dislike";
-                                    }
-                                    <button id="likeBtn_@user.Id" class="btn btn-dark likeBtn" data-user_id="@user.Id">@btnText</button>
-
-                                    <br />
-
-                                    if (ViewBag.ShouldSuperLike == 1)
-                                    {
-                                        <button id="superLikeBtn_@user.Id" class="btn btn-danger superLikeBtn" data-user_id="@user.Id">SUPER LIKE</button>
-                                    }
+                                    btnText = "Dislike";
                                 }
-                            
+                                <button id="likeBtn_@user.Id" class="btn btn-dark likeBtn" data-user_id="@user.Id">@btnText</button>
+
+                                <br />
+
+                                if (ViewBag.ShouldSuperLike == 1)
+                                {
+                                    <button id="superLikeBtn_@user.Id" class="btn btn-danger superLikeBtn" data-user_id="@user.Id">SUPER LIKE</button>
+                                }
+                            }
+
                             <p class="card-text">
                                 @user.Description
                             </p>
                         </div>
                     </div>
                 </div>
+                }
             }
+            else
+            {
+                <p>No users found.</p>
+            }
+
+
         </div>
     </div>
 

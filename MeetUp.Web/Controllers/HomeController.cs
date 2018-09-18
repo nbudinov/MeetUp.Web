@@ -55,7 +55,8 @@
             {
                 Users = Users,
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(totalUsers / (double)PAGE_SIZE)
+                TotalPages = (int)Math.Ceiling(totalUsers / (double)PAGE_SIZE),
+                TotalUsers = Users.Count()
             });
         }
 
@@ -83,8 +84,15 @@
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.DropDownList = EnumHelper.SelectListFor(model.Sex);
-                return View(model);
+                TempData["Error"] = "Some of your form fields are incorect.";
+
+                //ViewBag.DropDownList = EnumHelper.SelectListFor(model.Sex);
+                //return Redirect("myprofile");
+                var dbUser = this.users.GetUserById(model.Id);
+                dbUser.Description = model.Description;
+                dbUser.FullName = model.FullName;
+                
+                return View(dbUser);
             }
 
             if (Session["UserId"] == null)
