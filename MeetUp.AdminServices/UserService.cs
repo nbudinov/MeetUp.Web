@@ -13,13 +13,13 @@
         public IEnumerable<Image> getAllPhotos(int userId)
            {
 
-            var result = (List<Image>)null;
+            //var result = (List<Image>)null;
             using (var db = new MeetUpDbContext())
             {
-                result = (from image in db.Images where image.UserId == userId && image.Deleted == false select image).ToList();
+                return (from image in db.Images where image.UserId == userId && image.Deleted == false select image).ToList();
             }
 
-            return result;
+            //return result;
            }
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {

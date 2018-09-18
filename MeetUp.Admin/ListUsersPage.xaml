@@ -25,6 +25,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                     <GridViewColumn Header="Delete" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

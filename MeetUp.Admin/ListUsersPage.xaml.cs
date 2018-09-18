@@ -22,9 +22,9 @@ namespace MeetUp.Admin
         {
             InitializeComponent();
 
-            this.users = new UserService();
+            users = new UserService();
 
-            allUsers = this.users.All();
+            allUsers = users.All();
             this.DataContext = this; //data binding 
 
             listView.ItemsSource = allUsers;
