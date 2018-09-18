@@ -18,16 +18,16 @@ using System.Windows.Shapes;
 namespace MeetUp.Admin
 {
     /// <summary>
-    /// Interaction logic for EditCitiesPage.xaml
+    /// Interaction logic for EditCityPage.xaml
     /// </summary>
-    public partial class EditCitiesPage : Page
+    public partial class EditCityPage : Page
     {
 
         private CityViewModel city;
         private int CityId;
         private CityService cityService;
         
-        public EditCitiesPage(int cityId)
+        public EditCityPage(int cityId)
         {
             InitializeComponent();
             this.DataContext = this;
