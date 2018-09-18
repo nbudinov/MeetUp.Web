@@ -37,9 +37,6 @@ namespace MeetUp.Admin
             this.userService = new UserService();
             allImages = userService.getAllPhotos(this.UserId);
             Thumbnails.ItemsSource = allImages;
-            
-            //imgPhoto.Source = new BitmapImage(new Uri(GetImagePath(user.Images)));
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
