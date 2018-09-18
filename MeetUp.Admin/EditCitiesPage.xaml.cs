@@ -57,9 +57,7 @@ namespace MeetUp.Admin
             }
             else
             {
-                cityService.UpdateCity(this.CityId,
-                    NameText.Text,
-                    null);
+                cityService.UpdateCity(this.CityId, NameText.Text, null);
                 this.NavigationService.Navigate(new ListCitiesPage());
             }
         }

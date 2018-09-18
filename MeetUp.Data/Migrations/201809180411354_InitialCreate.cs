@@ -3,7 +3,7 @@ namespace MeetUp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMiration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {

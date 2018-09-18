@@ -15,13 +15,10 @@ namespace MeetUp.Admin
     {
         private readonly UserService users;
         public IEnumerable<UserListingModel> allUsers { get; set; }
-        //public ObservableCollection<User> usersFromDb = new ObservableCollection<User>();
-
-
+        
         public ListUsersPage()
         {
             InitializeComponent();
-
             users = new UserService();
 
             allUsers = users.All();
@@ -49,10 +46,6 @@ namespace MeetUp.Admin
 
         private void EditUser(object sender, RoutedEventArgs e)
         {
-            /*
-            Window w = new Window();
-            w.ShowDialog();
-            */
             Button b = sender as Button;
             var c = b.CommandParameter as UserListingModel;
             var user_id = c.Id;

@@ -183,7 +183,7 @@
             }
         }
 
-        public bool Create(string email, string password, string fullname, string description, DateTime? birthday = null)
+        public bool Create(string email, string password, string fullname, string description, DateTime? birthday = null, UserRole role = UserRole.User)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -205,7 +205,8 @@
                     FullName = fullname,
                     Description = description,
                     Birthday = birthday,
-                    Sex = UserSex.Male
+                    Sex = UserSex.Male,
+                    Role = role,
                     //TODO pass sex as param
                 };
 
