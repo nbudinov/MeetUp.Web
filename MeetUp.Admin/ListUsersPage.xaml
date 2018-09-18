@@ -36,8 +36,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        
         <Button Content="Create User" HorizontalAlignment="Left" Margin="355,0,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click" Height="21"/>
-
         <Button Content="Manage cities" HorizontalAlignment="Left" Margin="495,0,0,0" VerticalAlignment="Top" Width="94" Height="21" Click="Button_Click_1"/>
         
     </Grid>

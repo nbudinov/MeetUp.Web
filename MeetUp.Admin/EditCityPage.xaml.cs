@@ -37,7 +37,6 @@ namespace MeetUp.Admin
 
             city = cityService.GetCityById(this.CityId);
             NameText.Text = city.Name;
-            
         }
         
         // Edit

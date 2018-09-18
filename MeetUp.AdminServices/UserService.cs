@@ -21,6 +21,7 @@
 
             //return result;
            }
+
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {
             using (var db = new MeetUpDbContext())

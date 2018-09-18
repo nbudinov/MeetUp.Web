@@ -63,8 +63,6 @@ namespace MeetUp.Admin
 
         private void RemovePhoto(object sender, RoutedEventArgs e)
         {
-
-
             Button b = sender as Button;
             var image = b.CommandParameter as Image;
 
@@ -75,10 +73,7 @@ namespace MeetUp.Admin
 
                 allImages = userService.getAllPhotos(this.UserId);
                 Thumbnails.ItemsSource = allImages;
-
             }
-
-
         }
 
     }
