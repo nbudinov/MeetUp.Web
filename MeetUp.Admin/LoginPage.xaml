@@ -10,13 +10,11 @@
 
 
     <Grid>
-
-        <ListView>
-            <ListView.Background>
-                <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
-            </ListView.Background>
-        </ListView>
         
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+                
         <TextBlock HorizontalAlignment="Left" Margin="43,28,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Height="24" Width="60"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="43,65,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Height="24" Width="60"/>

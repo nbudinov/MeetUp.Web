@@ -11,16 +11,12 @@
     public class UserService
     {
         public IEnumerable<Image> getAllPhotos(int userId)
-           {
-
-            //var result = (List<Image>)null;
+        {
             using (var db = new MeetUpDbContext())
             {
                 return (from image in db.Images where image.UserId == userId && image.Deleted == false select image).ToList();
             }
-
-            //return result;
-           }
+        }
 
         public IEnumerable<UserListingModel> All(int page = 1, int pageSize = 10, int? withoutUserId = 0)
         {

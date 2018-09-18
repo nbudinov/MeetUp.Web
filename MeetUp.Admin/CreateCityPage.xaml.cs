@@ -29,12 +29,23 @@ namespace MeetUp.Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var errorsWhileEdit = "";
 
-            //TODO add variable checks
+            if (Name.Text.Length == 0)
+            {
+                errorsWhileEdit += "Invalid Name \n";
+            }
 
-            cityService = new CityService();
-            cityService.Create(Name.Text);
-            this.NavigationService.Navigate(new ListCitiesPage());
+            if (errorsWhileEdit != "")
+            {
+                MessageBox.Show("Please check the Name field again");
+            }
+            else
+            {
+                cityService = new CityService();
+                cityService.Create(Name.Text);
+                this.NavigationService.Navigate(new ListCitiesPage());
+            }
         }
 
     }
