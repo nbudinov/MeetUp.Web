@@ -37,9 +37,6 @@ namespace MeetUp.Admin
             this.userService = new UserService();
             allImages = userService.getAllPhotos(this.UserId);
             Thumbnails.ItemsSource = allImages;
-            
-            //imgPhoto.Source = new BitmapImage(new Uri(GetImagePath(user.Images)));
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -66,8 +63,6 @@ namespace MeetUp.Admin
 
         private void RemovePhoto(object sender, RoutedEventArgs e)
         {
-
-
             Button b = sender as Button;
             var image = b.CommandParameter as Image;
 
@@ -78,10 +73,7 @@ namespace MeetUp.Admin
 
                 allImages = userService.getAllPhotos(this.UserId);
                 Thumbnails.ItemsSource = allImages;
-
             }
-
-
         }
 
     }

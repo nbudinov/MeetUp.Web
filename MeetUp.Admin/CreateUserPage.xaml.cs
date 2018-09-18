@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel.DataAnnotations;
+using MeetUp.Data.Models;
 
 namespace MeetUp.Admin
 {
@@ -12,6 +13,7 @@ namespace MeetUp.Admin
     public partial class CreateUserPage : Page
     {
         private UserService userService;
+        private UserRole userRole;
 
         public CreateUserPage()
         {
@@ -65,15 +67,32 @@ namespace MeetUp.Admin
                 errorsWhileEdit += "Your password and confirmation password do not match. \n";
             }
 
+            if ((! Convert.ToBoolean(UserRoleRadioButton.IsChecked)) && (! Convert.ToBoolean(AdminRoleRadioButton.IsChecked)))
+            {
+                errorsWhileEdit += "Choose User Role. \n";
+            } else
+            {
+
+                if (Convert.ToBoolean(UserRoleRadioButton.IsChecked))
+                {
+                    userRole = UserRole.User;
+                }
+
+                if (Convert.ToBoolean(AdminRoleRadioButton.IsChecked))
+                {
+                    userRole = UserRole.Admin;
+                }
+
+            }
+
             if (errorsWhileEdit != "")
             {
                 MessageBox.Show("Please check the following fields: \n" + errorsWhileEdit);
             }
             else
             {
-                //TODO add variable checks
                 userService = new UserService();
-                userService.Create(EmailText.Text, PasswordNameText.Password.ToString(), FullNameText.Text, DescriptionNameText.Text, DateTime.Parse(Birthday.Text));
+                userService.Create(EmailText.Text, PasswordNameText.Password.ToString(), FullNameText.Text, DescriptionNameText.Text, DateTime.Parse(Birthday.Text), userRole);
                 this.NavigationService.Navigate(new ListUsersPage());
             }
         }

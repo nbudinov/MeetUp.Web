@@ -50,7 +50,6 @@ namespace MeetUp.Admin
             }
             else
             {
-
                 if (userService.Login(EmailText.Text.ToString(), PasswordText.Password.ToString()))
                 {
                     this.NavigationService.Navigate(new ListUsersPage());
@@ -59,7 +58,6 @@ namespace MeetUp.Admin
                 {
                     MessageBox.Show("Login failed! Try again");
                 }
-
             }
         }
 

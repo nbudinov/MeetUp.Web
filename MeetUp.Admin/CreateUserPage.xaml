@@ -33,7 +33,10 @@
         <Label Content="Description" HorizontalAlignment="Left" Margin="50,310,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
         <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,317,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
-        <Button Content="Create" HorizontalAlignment="Left" Margin="50,373,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="50,391,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
+
+        <RadioButton x:Name="UserRoleRadioButton" Content="User" HorizontalAlignment="Left" Margin="50,358,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="AdminRoleRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="129,361,0,0" VerticalAlignment="Top"/>
 
 
 

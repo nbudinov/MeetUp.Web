@@ -23,6 +23,8 @@ namespace MeetUp.AdminServices.Models.Users
 
         public UserSex Sex { get; set; }
 
+        public UserRole Role { get; set; }
+
         public int Banned { get; set; }
 
         public int Active { get; set; }

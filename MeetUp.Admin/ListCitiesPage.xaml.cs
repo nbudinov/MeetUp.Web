@@ -59,8 +59,8 @@ namespace MeetUp.Admin
             var c = b.CommandParameter as CityListingModel;
             var city_id = c.Id;
 
-            var editCitiesPage = new EditCitiesPage(city_id);
-            this.NavigationService.Navigate(editCitiesPage);
+            var editCityPage = new EditCityPage(city_id);
+            this.NavigationService.Navigate(editCityPage);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

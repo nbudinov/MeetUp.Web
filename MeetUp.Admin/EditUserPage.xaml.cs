@@ -24,7 +24,6 @@ namespace MeetUp.Admin
         {
             InitializeComponent();
             this.DataContext = this;
-            //MessageBox.Show(userId.ToString());
             this.UserId = userId;
 
             userService = new UserService();
@@ -51,14 +50,6 @@ namespace MeetUp.Admin
                 UnbanUserButton.Visibility = Visibility.Hidden; 
             }
             
-        }
-
-        public string GetImagePath(IEnumerable<UserImageModel> images)
-        {
-            if (images.Count() == 0) {
-                return "C:\\Users\\dekal\\Downloads\\dummy_user.png";
-            }
-            return images.First().Path;
         }
 
         // Edit

@@ -10,7 +10,6 @@
     <Grid>
         <ListView x:Name="Thumbnails" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
-
             <ListView.View>
                 <GridView x:Name="gridView">
                     <GridViewColumn Width="200">
@@ -21,8 +20,6 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-
-
                     <GridViewColumn Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -30,21 +27,15 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
                 </GridView>
             </ListView.View>
-            
+
         </ListView>
 
-        <Image Margin="382,90,100,130" Name="imgPhoto" Stretch="Fill" />
-        <Button Content="Upload images" HorizontalAlignment="Left" Margin="498,387,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_1"/> 
-
+        <Button Content="Upload images" HorizontalAlignment="Left" Margin="299,0,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_1"/>
 
     </Grid>
 
-
-    
-
 </Page>
         
-
