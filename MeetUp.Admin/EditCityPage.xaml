@@ -10,7 +10,10 @@
 
     <Grid>
 
-        <TextBox Text="{Binding Path=UserId}"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
         <Label Content="Edit City" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="32" Width="110"/>
         
         

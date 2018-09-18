@@ -67,5 +67,10 @@ namespace MeetUp.Admin
             var listCitiesPage = new ListCitiesPage();
             this.NavigationService.Navigate(listCitiesPage);
         }
+
+        private void Button_Click_LogOut(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new LoginPage());
+        }
     }
 }

@@ -35,6 +35,7 @@
                 .OrderByDescending(u => u.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
+                .Where(u => u.Deleted == 0)
                 .Select(u => new CityListingModel
                 {
                     Id = u.Id,
@@ -57,9 +58,8 @@
                     .FirstOrDefault();
 
                 dbCity.Name = name ?? dbCity.Name;
-                //TODO
-                //dbCity.Deleted = deleted ?? dbCity.Deleted;
-                
+                dbCity.Deleted = deleted ?? dbCity.Deleted;
+                                
                 db.SaveChanges();
             }
         }

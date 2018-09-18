@@ -39,6 +39,8 @@
                         Description = u.Description,
                         Banned = u.Banned,
                         Sex = u.Sex,
+                        Role = u.Role,
+                        Active = u.Active,
                         Images = u.Images.Select(i => new UserImageModel
                         {
                             Id = i.Id,
@@ -67,6 +69,7 @@
                         Birthday = u.Birthday,
                         Description = u.Description,
                         Sex = u.Sex,
+                        Role = u.Role,
                         Active = u.Active,
                         Banned = u.Banned,
                         Images = u.Images.Select(i => new UserImageModel
@@ -112,15 +115,17 @@
             }
         }
 
-        public void UpdateUser(int id, 
-            string fullname = null, 
-            string description = null, 
-            int? cityId = null, 
-            DateTime? birthday = null, 
+        public void UpdateUser(int id,
+            string fullname = null,
+            string description = null,
+            int? cityId = null,
+            DateTime? birthday = null,
             string password = null,
             int? active = null,
-            int? deleted = null, 
-            int? banned = null)
+            int? deleted = null,
+            int? banned = null,
+            UserRole? role = null,
+            UserSex? sex = null)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -143,6 +148,8 @@
                 dbUser.Active = active ?? dbUser.Active;
                 dbUser.Deleted = deleted ?? dbUser.Deleted;
                 dbUser.Banned = banned ?? dbUser.Banned;
+                dbUser.Sex = sex ?? dbUser.Sex;
+                dbUser.Role = role ?? dbUser.Role;
 
                 db.SaveChanges();
             }
@@ -184,7 +191,7 @@
             }
         }
 
-        public bool Create(string email, string password, string fullname, string description, DateTime? birthday = null, UserRole role = UserRole.User)
+        public bool Create(string email, string password, string fullname, string description, DateTime? birthday = null, UserRole role = UserRole.User, UserSex sex = UserSex.Other)
         {
             using (var db = new MeetUpDbContext())
             {
@@ -206,9 +213,10 @@
                     FullName = fullname,
                     Description = description,
                     Birthday = birthday,
-                    Sex = UserSex.Male,
+                    Sex = sex,
                     Role = role,
-                    //TODO pass sex as param
+                    CreateTime = DateTime.Today,
+                    LastOnline = DateTime.Today
                 };
 
                 db.Users.Add(user);
@@ -226,7 +234,7 @@
             using (var db = new MeetUpDbContext())
             {
                 var user = db.Users
-                    .Where(u => u.Email == email && u.Deleted == 0 && u.Banned == 0)
+                    .Where(u => u.Email == email && u.Deleted == 0 && u.Banned == 0 && u.Role == UserRole.Admin)
                     .FirstOrDefault();
 
                 if (user == null)

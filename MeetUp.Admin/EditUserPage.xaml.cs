@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Linq;
+using MeetUp.Data.Models;
 
 namespace MeetUp.Admin
 {
@@ -29,18 +30,34 @@ namespace MeetUp.Admin
             userService = new UserService();
 
             user = userService.GetUserById(this.UserId);
+
+            Birthday.Text = ((DateTime)user.Birthday).ToString("dd/MM/yyyy");
             EmailText.Text = user.Email;
             EmailText.IsEnabled = false;
             FullNameText.Text = user.FullName;
             DescriptionText.Text = user.Description;
-            if (user.Birthday != null)
+            ActiveCheckbox.IsChecked = Convert.ToBoolean(user.Active);
+            PasswordText.Password = null;
+            ConfirmationPasswordNameText.Password = null;
+
+            if (user.Role == UserRole.User)
             {
-                DateTime brth = (DateTime)user.Birthday;
-                Birthday.Text = brth.ToString("dd/MM/yyyy");
+                UserRoleRadioButton.IsChecked = true;
+            }
+            if (user.Role == UserRole.Admin)
+            {
+                AdminRoleRadioButton.IsChecked = true;
+            }
+
+            if (user.Sex == UserSex.Male)
+            {
+                MaleRadioButton.IsChecked = true;
+            }
+            if (user.Sex == UserSex.Female)
+            {
+                FemaleRadioButton.IsChecked = true;
             }
             
-            ActiveCheckbox.IsChecked = Convert.ToBoolean(user.Active);
-
             // Show and hide ban/unban button
             if (user.Banned == 1)
             {
@@ -67,6 +84,24 @@ namespace MeetUp.Admin
             {
                 errorsWhileEdit += "Invalid Full name \n";
             }
+            
+            if (PasswordText.Password.Length > 0)
+            { 
+                if (PasswordText.Password.Length <= 4)
+                {
+                    errorsWhileEdit += "Invalid Password \n";
+                }
+
+                if (ConfirmationPasswordNameText.Password.Length <= 4)
+                {
+                    errorsWhileEdit += "Invalid Confirmation Password \n";
+                }
+
+                if (PasswordText.Password != ConfirmationPasswordNameText.Password)
+                {
+                    errorsWhileEdit += "Password and confirmation password do not match. \n";
+                }
+            }
 
             if (errorsWhileEdit != "")
             {
@@ -81,7 +116,10 @@ namespace MeetUp.Admin
                     DateTime.Parse(Birthday.Text),
                     PasswordText.Password.ToString(),
                     Convert.ToInt32(ActiveCheckbox.IsChecked),
-                    null, null);
+                    null, null,
+                    Convert.ToBoolean(UserRoleRadioButton.IsChecked)? UserRole.User : UserRole.Admin,
+                    Convert.ToBoolean(MaleRadioButton.IsChecked)? UserSex.Male : UserSex.Female);
+
                 this.NavigationService.Navigate(new ListUsersPage());
             }
         }
@@ -89,14 +127,14 @@ namespace MeetUp.Admin
         private void Button_Click_Ban(object sender, RoutedEventArgs e)
         {
             var userServiceModel = new UserServiceModel();
-            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 1);
+            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 1, null, null);
             this.NavigationService.Navigate(new ListUsersPage());
         }
 
         private void Button_Click_Unban(object sender, RoutedEventArgs e)
         {
             var userServiceModel = new UserServiceModel();
-            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 0);
+            userService.UpdateUser(this.UserId, null, null, null, null, null, null, null, 0, null, null);
             this.NavigationService.Navigate(new ListUsersPage());
         }
 

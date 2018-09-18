@@ -11,7 +11,9 @@
 
     <Grid>
 
-        <TextBox Text="{Binding Path=UserId}"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
 
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
         <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,57,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
@@ -21,24 +23,25 @@
         <Label Content="Email" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top" Height="23" Width="49"/>
         <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Full Name" HorizontalAlignment="Left" Margin="50,167,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
-        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <Label Content="Full Name" HorizontalAlignment="Left" Margin="50,158,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Password" HorizontalAlignment="Left" Margin="50,218,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="129,218,0,0" VerticalAlignment="Top" Width="120" Name="PasswordNameText" Height="23" />
+        <Label Content="Password" HorizontalAlignment="Left" Margin="50,203,0,0" VerticalAlignment="Top" Height="23" Width="74"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,203,0,0" VerticalAlignment="Top" Width="120" Name="PasswordNameText" Height="23" />
 
-        <Label Content="Confirmation&#xD;&#xA;Password" HorizontalAlignment="Left" Margin="50,258,0,0" VerticalAlignment="Top" Height="47" Width="88"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="129,272,0,0" VerticalAlignment="Top" Width="120" Name="ConfirmationPasswordNameText" Height="23" />
+        <Label Content="Confirm&#xA;Password" HorizontalAlignment="Left" Margin="50,244,0,0" VerticalAlignment="Top" Height="47" Width="88"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,248,0,0" VerticalAlignment="Top" Width="120" Name="ConfirmationPasswordNameText" Height="23" />
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="50,310,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
-        <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,317,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="50,296,0,0" VerticalAlignment="Top" Height="30" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Name="DescriptionNameText" Height="23" Margin="129,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
         <Button Content="Create" HorizontalAlignment="Left" Margin="50,391,0,0" VerticalAlignment="Top" Width="199" Click="Button_Click" Height="32"/>
+      
+        <RadioButton GroupName="Role" x:Name="UserRoleRadioButton" Content="User" HorizontalAlignment="Left" Margin="50,331,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Role" x:Name="AdminRoleRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="50,357,0,0" VerticalAlignment="Top"/>
 
-        <RadioButton x:Name="UserRoleRadioButton" Content="User" HorizontalAlignment="Left" Margin="50,358,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="AdminRoleRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="129,361,0,0" VerticalAlignment="Top"/>
-
-
+        <RadioButton GroupName="Sex" x:Name="MaleRadioButton" Content="Male" HorizontalAlignment="Left" Margin="145,331,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Sex" x:Name="FemaleRadioButton" Content="Female" HorizontalAlignment="Left" Margin="145,360,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 

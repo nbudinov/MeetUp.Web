@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public bool Deleted { get; set; }
+        public int Deleted { get; set; } = 0;
     }
 }

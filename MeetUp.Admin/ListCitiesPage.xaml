@@ -12,6 +12,11 @@
     <Grid>
 
         <ListView x:Name="listView">
+
+            <ListView.Background>
+                <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+            </ListView.Background>
+
             <ListView.View>
                 <GridView x:Name="gridView">
                     <GridViewColumn Header="City" Width="100" DisplayMemberBinding="{Binding Name}"/>
@@ -34,7 +39,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Create City" HorizontalAlignment="Left" Margin="247,0,0,429" VerticalAlignment="Bottom" Width="94" Click="Button_Click" Height="21"/>
+        <Button Content="Create City" HorizontalAlignment="Left" Margin="228,-5,0,435" VerticalAlignment="Bottom" Width="94" Click="Button_Click" Height="20"/>
 
     </Grid>
 

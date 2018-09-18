@@ -13,7 +13,11 @@
 
         public UserSex Sex { get; set; }
 
+        public UserRole Role { get; set; }
+
         public int Banned { get; set; }
+
+        public int Active { get; set; }
 
         public int Deleted { get; set; } = 0;
 

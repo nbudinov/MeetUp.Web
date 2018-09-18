@@ -9,34 +9,47 @@
       Title="EditUserPage">
 
     <Grid>
-
-        <TextBox Text="{Binding Path=UserId}"/>
-
+        
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
         <Label Content="Edit User" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="32" Width="110"/>
 
         <Label Content="Birthday" HorizontalAlignment="Left" Margin="49,47,0,0" VerticalAlignment="Top" Height="28" Width="58"/>
         <DatePicker HorizontalAlignment="Left" Name="Birthday" Margin="129,47,0,0" VerticalAlignment="Top" Height="28" Width="120"/>
 
-        <Label Content="Email" HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
-        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="129,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="45,80,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
+        <TextBox HorizontalAlignment="Left" Name="EmailText" Height="23" Margin="130,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Full Name" HorizontalAlignment="Left" Margin="45,149,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
-        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Full Name" HorizontalAlignment="Left" Margin="45,132,0,0" VerticalAlignment="Top" Height="23" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Name="FullNameText" Height="23" Margin="129,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Passowrd" HorizontalAlignment="Left" Margin="45,199,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="129,199,0,0" VerticalAlignment="Top" Width="120" Height="23" Name="PasswordText" />
+        <Label Content="Passowrd" HorizontalAlignment="Left" Margin="45,169,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="130,169,0,0" VerticalAlignment="Top" Width="120" Height="23" Name="PasswordText" />
+        
+        <Label Content="Confirm" HorizontalAlignment="Left" Margin="45,205,0,0" VerticalAlignment="Top" Height="23" Width="62"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="129,205,0,0" VerticalAlignment="Top" Width="120" x:Name="ConfirmationPasswordNameText" Height="23" />
+        
+        <Label Content="Description" HorizontalAlignment="Left" Margin="46,238,0,0" VerticalAlignment="Top" Height="30" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Name="DescriptionText" Height="24" Margin="130,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="45,244,0,0" VerticalAlignment="Top" Height="30" Width="79"/>
-        <TextBox HorizontalAlignment="Left" Name="DescriptionText" Height="24" Margin="129,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Edit images" Name="EditImageButton" HorizontalAlignment="Left" Margin="49,277,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Edit_Image" Height="29"/>
 
-        <Button Content="Edit images" Name="EditImageButton" HorizontalAlignment="Left" Margin="45,291,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Edit_Image" Height="29"/>
-
-        <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,330,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Active" Name="ActiveCheckbox" HorizontalAlignment="Left" Margin="55,321,0,0" VerticalAlignment="Top"/>
 
         <Button Content="Edit" HorizontalAlignment="Left" Margin="49,350,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" Height="32"/>
 
-        <Button Content="Ban this user" Name="BanUserButton" HorizontalAlignment="Left" Margin="50,388,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click_Ban" Height="29"/>
+        <RadioButton GroupName="Role" x:Name="UserRoleRadioButton" Content="User" HorizontalAlignment="Left" Margin="129,284,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Role" x:Name="AdminRoleRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="129,321,0,0" VerticalAlignment="Top"/>
+
+        <RadioButton GroupName="Sex" x:Name="MaleRadioButton" Content="Male" HorizontalAlignment="Left" Margin="193,284,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="Sex" x:Name="FemaleRadioButton" Content="Female" HorizontalAlignment="Left" Margin="193,324,0,0" VerticalAlignment="Top"/>
+
+        <Button Content="Ban this user" Name="BanUserButton" HorizontalAlignment="Left" Margin="50,387,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click_Ban" Height="29"/>
         <Button Content="Unban this user" Name="UnbanUserButton" HorizontalAlignment="Left" Margin="159,387,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_Unban" Height="29"/>
+        
+
 
     </Grid>
 

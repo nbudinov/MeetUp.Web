@@ -3,7 +3,7 @@ namespace MeetUp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initialMigration : DbMigration
     {
         public override void Up()
         {
@@ -13,7 +13,7 @@ namespace MeetUp.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Deleted = c.Boolean(nullable: false),
+                        Deleted = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

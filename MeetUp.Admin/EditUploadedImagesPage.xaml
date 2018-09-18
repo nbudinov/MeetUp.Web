@@ -8,6 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditUploadedImagesPage">
     <Grid>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
         <ListView x:Name="Thumbnails" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
             <ListView.View>
@@ -33,7 +38,7 @@
 
         </ListView>
 
-        <Button Content="Upload images" HorizontalAlignment="Left" Margin="299,0,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_1"/>
+        <Button Content="Upload images" HorizontalAlignment="Left" Margin="299,0,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click_1" Height="22"/>
 
     </Grid>
 

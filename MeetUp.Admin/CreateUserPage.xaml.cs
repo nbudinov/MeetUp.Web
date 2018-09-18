@@ -14,6 +14,7 @@ namespace MeetUp.Admin
     {
         private UserService userService;
         private UserRole userRole;
+        private UserSex userSex;
 
         public CreateUserPage()
         {
@@ -33,6 +34,8 @@ namespace MeetUp.Admin
             }
         }
 
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var errorsWhileEdit = "";
@@ -47,12 +50,12 @@ namespace MeetUp.Admin
                 errorsWhileEdit += "Invalid Email address \n";
             }
 
-            if (PasswordNameText.Password.Length == 0)
+            if (PasswordNameText.Password.Length <= 4)
             {
                 errorsWhileEdit += "Invalid Password \n";
             }
 
-            if (ConfirmationPasswordNameText.Password.Length == 0)
+            if (ConfirmationPasswordNameText.Password.Length <= 4)
             {
                 errorsWhileEdit += "Invalid Confirmation Password \n";
             }
@@ -64,15 +67,14 @@ namespace MeetUp.Admin
 
             if (PasswordNameText.Password != ConfirmationPasswordNameText.Password)
             {
-                errorsWhileEdit += "Your password and confirmation password do not match. \n";
+                errorsWhileEdit += "Password and confirmation password do not match. \n";
             }
 
             if ((! Convert.ToBoolean(UserRoleRadioButton.IsChecked)) && (! Convert.ToBoolean(AdminRoleRadioButton.IsChecked)))
             {
-                errorsWhileEdit += "Choose User Role. \n";
+                errorsWhileEdit += "Choose User Role \n";
             } else
             {
-
                 if (Convert.ToBoolean(UserRoleRadioButton.IsChecked))
                 {
                     userRole = UserRole.User;
@@ -82,7 +84,23 @@ namespace MeetUp.Admin
                 {
                     userRole = UserRole.Admin;
                 }
+            }
+            
+            if ((!Convert.ToBoolean(MaleRadioButton.IsChecked)) && (!Convert.ToBoolean(FemaleRadioButton.IsChecked)))
+            {
+                errorsWhileEdit += "Choose User Sex \n";
+            }
+            else
+            {
+                if (Convert.ToBoolean(MaleRadioButton.IsChecked))
+                {
+                    userSex = UserSex.Male;
+                }
 
+                if (Convert.ToBoolean(FemaleRadioButton.IsChecked))
+                {
+                    userSex = UserSex.Female;
+                }
             }
 
             if (errorsWhileEdit != "")
@@ -92,7 +110,7 @@ namespace MeetUp.Admin
             else
             {
                 userService = new UserService();
-                userService.Create(EmailText.Text, PasswordNameText.Password.ToString(), FullNameText.Text, DescriptionNameText.Text, DateTime.Parse(Birthday.Text), userRole);
+                userService.Create(EmailText.Text, PasswordNameText.Password.ToString(), FullNameText.Text, DescriptionNameText.Text, DateTime.Parse(Birthday.Text), userRole, userSex);
                 this.NavigationService.Navigate(new ListUsersPage());
             }
         }

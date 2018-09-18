@@ -33,7 +33,7 @@ namespace MeetUp.Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var errorsWhileEdit = "";
-
+            
             if (EmailText.Text.Length == 0)
             {
                 errorsWhileEdit = "Invalid Email \n";

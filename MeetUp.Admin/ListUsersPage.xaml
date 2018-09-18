@@ -10,12 +10,19 @@
 
 
     <Grid>
-
+        
         <ListView x:Name="listView">
+            
+            <ListView.Background>
+                <ImageBrush ImageSource="C:\Users\dekal\source\repos\MeetUp.Web\MeetUp.Admin\free-hd-love-wallpapers-005.jpg" Stretch="UniformToFill"/>
+            </ListView.Background>
+            
             <ListView.View>
                 <GridView x:Name="gridView">
                     <GridViewColumn Header="Full Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Sex" Width="50" DisplayMemberBinding="{Binding Sex}"/>
+                    <GridViewColumn Header="Role" Width="50" DisplayMemberBinding="{Binding Role}"/>
+                    <GridViewColumn Header="Active" Width="50" DisplayMemberBinding="{Binding Active}"/>
                     <GridViewColumn Header="Banned" Width="50" DisplayMemberBinding="{Binding Banned}"/>
                     
                     <GridViewColumn Header="Edit" Width="50">
@@ -37,9 +44,10 @@
             </ListView.View>
         </ListView>
         
-        <Button Content="Create User" HorizontalAlignment="Left" Margin="355,0,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click" Height="21"/>
-        <Button Content="Manage cities" HorizontalAlignment="Left" Margin="495,0,0,0" VerticalAlignment="Top" Width="94" Height="21" Click="Button_Click_1"/>
-        
+        <Button Content="Create User" HorizontalAlignment="Left" Margin="430,0,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click" Height="22"/>
+        <Button Content="Manage cities" HorizontalAlignment="Left" Margin="547,0,0,0" VerticalAlignment="Top" Width="94" Height="22" Click="Button_Click_1"/>
+        <Button Content="Log out" HorizontalAlignment="Left" Margin="661,1,0,0" VerticalAlignment="Top" Width="94" Height="21" Click="Button_Click_LogOut"/>
+
     </Grid>
 
 
