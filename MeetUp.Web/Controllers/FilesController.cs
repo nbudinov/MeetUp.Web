@@ -74,14 +74,24 @@
         }
 
         [HttpPost]
-        public void Upload()
+        public JsonResult Upload()
         {
+            if (Session["UserId"] == null)
+            {
+                return Json(new { Error = "Unauthorized" });
+            }
+
             var userId = (int)Session["UserId"];
 
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
                 var ext = Path.GetExtension(file.FileName);
+
+                if(ext != ".jpg" && ext != ".jpeg")
+                {
+                    return Json(new { Error = "Invalid file type" });
+                }
 
                 var fileName = Guid.NewGuid();
                 var fileNameString = fileName.ToString();
@@ -93,6 +103,8 @@
 
                 this.users.SaveUserImage(userId, path, file.ContentLength, ext);
             }
+
+            return Json(new { Success = 1 });
 
         }
 
@@ -109,16 +121,12 @@
             try
             {
                 var imgIdInt = Convert.ToInt32(id);
-
                 var image = this.users.GetUserImageById(userId, imgIdInt);
-
                 if (System.IO.File.Exists(image.Path))
                 {
                     System.IO.File.Delete(image.Path);
                 }
-
                 this.users.DeleteUserImage(userId, imgIdInt);
-
                
                 return Json(new { Result = "OK" });
             }

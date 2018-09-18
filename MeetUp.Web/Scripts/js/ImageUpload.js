@@ -22,14 +22,22 @@
             data: formData,
             contentType: false,
             processData: false,
-            //success: function(response) {
-            //    alert('succes!!');
+            //success: function (response) {
+            //    if (response.Success) {
+
+            //    } else {
+            //        toastr.error(response.Error);
+            //    }
             //},
             //error: function (error) {
             //    alert(error);
             //}
-        }).done(function () {
-            document.location.reload();
+        }).done(function (resp) {
+            if (resp.Success) {
+                document.location.reload();
+            } else {
+                toastr.error(resp.Error)
+            }
 
         }).fail(function (xhr, status, errorThrown) {
             alert('fail');

@@ -48,8 +48,6 @@
             {
                 return Json(new { msg = "Poped up today already" });
             }
-
-
         }
 
         private string ConvertViewToString(string viewName, object model)

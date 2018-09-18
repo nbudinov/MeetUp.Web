@@ -6,31 +6,25 @@ $(document).ready(function () {
 
     }
 
-    if (getCookie(POPUP_COOKIE_NAME) == "") {
+    var intervalId = setInterval(function () {
 
-        var intervalId = setInterval(function () {
-
-            if (getCookie(POPUP_COOKIE_NAME) == "") {
-                $.ajax({
-                    type: "POST",
-                    url: "/dailyUserSuggestion",
-                    data: {},
-                    success: function (data) {
-                        console.log(data)
-                        if (data.html) {
-                            console.log(data.html);
-                            $(".modal-body").html(data.html);
-                            $('#popupModal').modal("show");
-                        } else {
-                            clearInterval(intervalId);
-                        }
-                    }
-                });
-            } else {
-                clearInterval(intervalId);
+        $.ajax({
+            type: "POST",
+            url: "/dailyUserSuggestion",
+            data: {},
+            success: function (data) {
+                console.log(data)
+                if (data.html) {
+                    console.log(data.html);
+                    $(".modal-body").html(data.html);
+                    $('#popupModal').modal("show");
+                } else {
+                    clearInterval(intervalId);
+                }
             }
-        }, 5000);
-    }
+        });
+           
+    }, 5000);
 
 })
 

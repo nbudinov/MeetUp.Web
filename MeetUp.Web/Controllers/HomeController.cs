@@ -49,8 +49,6 @@
 
             ViewBag.Sex = sex;
 
-           
-
             var Users = this.users.All(page, PAGE_SIZE, userId, ageFrom, ageTo, sex);
 
             return View(new UserPageListingModel
@@ -126,7 +124,7 @@
 
             return Json(data);
         }
-
+            
         [HttpPost]
         public JsonResult SuperLikeUser(int id)
         {

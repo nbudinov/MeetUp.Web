@@ -19,8 +19,6 @@
         [MaxLength(255, ErrorMessage = "Description min length is 255 chars")]
         public string Description { get; set; }
 
-        public string City { get; set; }
-
         public DateTime? Birthday { get; set; }
 
         public DateTime? CreateTime { get; set; }
@@ -36,6 +34,8 @@
         public int Active { get; set; }
 
         public IEnumerable<UserImageModel> Images { get; set; } = new List<UserImageModel>();
+
+        public string City { get; set; }
 
         public int PeopleYouLikedCount { get; set; }
 

@@ -45,7 +45,7 @@
                         Size = i.Size,
                         Extension = i.Extension
                     }),
-                    ThisUsersLikes = u.ThisUserLikes.ToList(), //TODO: fix
+                    ThisUsersLikes = u.ThisUserLikes.ToList(), 
                     UsersLikeThisUser = u.UsersLikeThisUser.ToList()
                 })
                 .ToList();
@@ -117,8 +117,6 @@
 
         public UserViewModel GetUserById(int id)
         {
-            //using (var db = new MeetUpDbContext())
-            //{
             return db.Users
                 .Where(u => u.Id == id)
                 .Select(u => new UserViewModel
@@ -148,7 +146,6 @@
                     UsersLikeThisUser = u.UsersLikeThisUser.ToList()
                 })
                 .FirstOrDefault();
-            //}
         }
 
         public UserServiceModel GetUserByEmail(string email)
