@@ -4,12 +4,23 @@
     ViewBag.Title = "Super Likes";
 }
 
-<h2>@ViewBag.Title</h2>
+<h1 class="my-4">
+    @ViewBag.Title
+</h1>
+<hr />
+
 @if (Model.TotalUsers > 0)
 {
-    <h5>@Model.TotalUsers people super liked you.</h5>
-
+    if (Model.TotalUsers == 1)
+    {
+        <h5>@Model.TotalUsers person super liked you. You should consider viewing his/her profile ;)</h5>
+    }
+    else
+    {
+        <h5>@Model.TotalUsers people super liked you. You should consider viewing some of their profiles ;)</h5>
+    }
 }
+<hr />
 
 <div class="row">
     @if (Model.TotalUsers > 0)
@@ -28,7 +39,18 @@
                     </a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@user.Name</a>
+                            <a href="#">
+                                @user.Name - @{
+                                                            if (user.Birthday != null)
+                                                            {
+                                                                var userBD = (DateTime)user.Birthday;
+                                                                var age = DateTime.Now.Year - userBD.Year;
+                                                                <span>
+                                                                    @age г.
+                                                                </span>
+                                                            }
+                                }
+                            </a>
 
                         </h4>
                         <p class="card-text">

@@ -409,6 +409,7 @@
                       Description = u.Description,
                       Banned = u.Banned,
                       Sex = u.Sex,
+                      Birthday = u.Birthday,
                       Images = u.Images.Select(i => new UserImageModel
                       {
                           Id = i.Id,
